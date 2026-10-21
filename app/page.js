@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+import Header from "../components/Header";
+import ExecutiveScore from "../components/ExecutiveScore";
+import KpiGrid from "../components/KpiGrid";
+
 export default function Home() {
   const [time, setTime] = useState("--:--");
 
@@ -26,28 +30,26 @@ export default function Home() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#000",
-        color: "#6dd6ff",
-        padding: "40px",
+        background:
+          "radial-gradient(circle at top, #12304a 0%, #050505 40%, #000000 100%)",
+        color: "#ffffff",
+        padding: "24px",
         fontFamily: "Segoe UI, sans-serif",
       }}
     >
-      <h1>ADRIAN AI OS</h1>
-
-      <p>Chief of Staff Command Center</p>
-
-      <h2>{time}</h2>
-
       <div
         style={{
-          marginTop: "20px",
-          border: "1px solid #6dd6ff",
-          borderRadius: "10px",
-          padding: "20px",
+          maxWidth: "1400px",
+          margin: "0 auto",
         }}
       >
-        <h3>Executive Score</h3>
-        <p>82%</p>
+        <Header time={time} />
+
+        <ExecutiveScore />
+
+        <div style={{ marginTop: "24px" }}>
+          <KpiGrid />
+        </div>
       </div>
     </main>
   );
