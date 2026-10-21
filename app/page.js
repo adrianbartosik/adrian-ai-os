@@ -58,12 +58,13 @@ export default function Home() {
         {/* HEADER */}
 
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "30px",
-          }}
+  className="header"
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "30px",
+  }}
         >
           <div>
             <h1
