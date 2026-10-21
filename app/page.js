@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import ExecutiveScore from "../components/ExecutiveScore";
 import KpiGrid from "../components/KpiGrid";
+import ArcReactor from "../components/ArcReactor";
 
 export default function Home() {
   const [time, setTime] = useState("--:--");
