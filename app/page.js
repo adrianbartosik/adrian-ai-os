@@ -3,48 +3,69 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState("--:--");
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const updateClock = () => {
       setTime(
         new Date().toLocaleTimeString("pl-PL", {
           hour: "2-digit",
           minute: "2-digit",
         })
       );
-    }, 1000);
+    };
+
+    updateClock();
+
+    const interval = setInterval(updateClock, 1000);
 
     return () => clearInterval(interval);
   }, []);
+
+  const cardStyle = {
+    background: "#09131f",
+    border: "1px solid #204863",
+    borderRadius: "16px",
+    padding: "20px",
+  };
 
   return (
     <main
       style={{
         minHeight: "100vh",
-        background: "#000",
-        color: "#6dd6ff",
-        padding: "30px",
-        fontFamily: "Segoe UI",
+        background:
+          "radial-gradient(circle at top, #12304a 0%, #050505 40%, #000000 100%)",
+        color: "#ffffff",
+        padding: "24px",
+        fontFamily: "Segoe UI, sans-serif",
       }}
     >
-      <h1>ADRIAN AI OS</h1>
-
-      <p>Chief of Staff Command Center</p>
-
-      <h2>{time}</h2>
-
       <div
         style={{
-          marginTop: "30px",
-          border: "1px solid #6dd6ff",
-          padding: "20px",
-          borderRadius: "12px",
+          maxWidth: "1400px",
+          margin: "0 auto",
         }}
       >
-        <h3>Executive Score</h3>
-        <h1>82%</h1>
-      </div>
-    </main>
-  );
-}
+        {/* HEADER */}
+
+        <div
+          className="header"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "24px",
+          }}
+        >
+          <div>
+            <h1
+              className="title"
+              style={{
+                margin: 0,
+                color: "#6dd6ff",
+              }}
+            >
+              ADRIAN AI OS
+            </h1>
+
+      
