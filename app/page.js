@@ -7,13 +7,11 @@ export default function Home() {
 
   useEffect(() => {
     const updateClock = () => {
-      const now = new Date();
-
       setTime(
-        now.toLocaleTimeString("pl-PL", {
+        new Date().toLocaleTimeString("pl-PL", {
           hour: "2-digit",
           minute: "2-digit",
-          second: "2-digit"
+          second: "2-digit",
         })
       );
     };
@@ -25,44 +23,54 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const cards = [
+  const stats = [
     { title: "EMAILS", value: 17 },
     { title: "MEETINGS", value: 4 },
     { title: "TEAMS", value: 12 },
-    { title: "TASKS", value: 6 }
+    { title: "TASKS", value: 6 },
   ];
+
+  const cardStyle = {
+    background: "#09131f",
+    border: "1px solid #204863",
+    borderRadius: "18px",
+    padding: "24px",
+    boxShadow: "0 0 25px rgba(109,214,255,0.10)",
+  };
 
   return (
     <main
       style={{
         minHeight: "100vh",
         background:
-          "radial-gradient(circle at top, #12263f 0%, #050505 45%, #000000 100%)",
+          "radial-gradient(circle at top,#12304a 0%,#050505 40%,#000000 100%)",
         color: "white",
-        padding: "40px",
-        fontFamily: "Segoe UI, sans-serif"
+        padding: "30px",
+        fontFamily: "Segoe UI,sans-serif",
       }}
     >
       <div
         style={{
-          maxWidth: "1400px",
-          margin: "0 auto"
+          maxWidth: "1600px",
+          margin: "0 auto",
         }}
       >
+        {/* HEADER */}
+
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: "40px"
+            marginBottom: "30px",
           }}
         >
           <div>
             <h1
               style={{
-                fontSize: "48px",
                 margin: 0,
-                color: "#6dd6ff"
+                fontSize: "52px",
+                color: "#6dd6ff",
               }}
             >
               ADRIAN AI OS
@@ -70,8 +78,7 @@ export default function Home() {
 
             <p
               style={{
-                color: "#89b4c7",
-                marginTop: "8px"
+                color: "#8aa9b5",
               }}
             >
               Chief of Staff Command Center
@@ -80,192 +87,77 @@ export default function Home() {
 
           <div
             style={{
-              fontSize: "40px",
+              fontSize: "38px",
               fontWeight: "bold",
-              color: "#78f7ff"
+              color: "#78f7ff",
             }}
           >
             {time}
           </div>
         </div>
 
+        {/* EXECUTIVE SCORE */}
+
+        <div
+          style={{
+            ...cardStyle,
+            marginBottom: "25px",
+          }}
+        >
+          <div style={{ color: "#88adc3" }}>
+            EXECUTIVE SCORE
+          </div>
+
+          <div
+            style={{
+              fontSize: "64px",
+              fontWeight: "bold",
+              color: "#6dd6ff",
+            }}
+          >
+            82%
+          </div>
+
+          <div style={{ color: "#65ff9d" }}>
+            ↑ +4% vs last week
+          </div>
+        </div>
+
+        {/* KPI */}
+
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateColumns: "repeat(4,1fr)",
             gap: "20px",
-            marginBottom: "30px"
+            marginBottom: "25px",
           }}
         >
-          {cards.map((card) => (
-            <div
-              key={card.title}
-              style={{
-                background: "#09131f",
-                border: "1px solid #1c4b6b",
-                borderRadius: "16px",
-                padding: "24px",
-                boxShadow: "0 0 20px rgba(109,214,255,0.15)"
-              }}
-            >
+          {stats.map((item) => (
+            <div key={item.title} style={cardStyle}>
               <div
                 style={{
-                  color: "#8db4c6",
-                  marginBottom: "10px"
+                  color: "#90aac0",
                 }}
               >
-                {card.title}
+                {item.title}
               </div>
 
               <div
                 style={{
-                  fontSize: "42px",
+                  fontSize: "44px",
                   fontWeight: "bold",
-                  color: "#6dd6ff"
+                  color: "#6dd6ff",
                 }}
               >
-                {card.value}
+                {item.value}
               </div>
             </div>
           ))}
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr",
-            gap: "20px"
-          }}
-        >
-          <div
-            style={{
-              background: "#09131f",
-              padding: "30px",
-              borderRadius: "16px",
-              border: "1px solid #1c4b6b"
-            }}
-          >
-            <h2
-              style={{
-                color: "#6dd6ff"
-              }}
-            >
-              AI BRIEF
-            </h2>
-
-            <ul
-              style={{
-                fontSize: "18px",
-                lineHeight: "2"
-              }}
-            >
-              <li>3 people waiting for decisions</li>
-              <li>2 approvals pending</li>
-              <li>1 escalation risk detected</li>
-              <li>Contract extensions need review</li>
-            </ul>
-          </div>
-
-          <div
-            style={{
-              background: "#09131f",
-              padding: "30px",
-              borderRadius: "16px",
-              border: "1px solid #1c4b6b"
-            }}
-          >
-            <h2
-              style={{
-                color: "#6dd6ff"
-              }}
-            >
-              NEXT MEETING
-            </h2>
-
-            <h3>Leadership Sync</h3>
-
-            <p>15:00</p>
-
-            <div
-              style={{
-                marginTop: "15px"
-              }}
-            >
-              Preparation Score
-            </div>
-
-            <div
-              style={{
-                marginTop: "10px",
-                height: "10px",
-                background: "#223649",
-                borderRadius: "10px",
-                overflow: "hidden"
-              }}
-            >
-              <div
-                style={{
-                  width: "84%",
-                  height: "100%",
-                  background: "#6dd6ff"
-                }}
-              />
-            </div>
-
-            <p
-              style={{
-                marginTop: "10px",
-                color: "#6dd6ff"
-              }}
-            >
-              84%
-            </p>
-          </div>
-        </div>
+        {/* MAIN GRID */}
 
         <div
           style={{
-            marginTop: "20px",
-            background: "#09131f",
-            padding: "30px",
-            borderRadius: "16px",
-            border: "1px solid #1c4b6b"
-          }}
-        >
-          <h2
-            style={{
-              color: "#6dd6ff"
-            }}
-          >
-            FOCUS RADAR
-          </h2>
-
-          <p>People waiting for your attention</p>
-
-          <div
-            style={{
-              display: "flex",
-              gap: "10px",
-              flexWrap: "wrap",
-              marginTop: "15px"
-            }}
-          >
-            {["Krzysztof", "Mykola", "Justyna"].map((name) => (
-              <div
-                key={name}
-                style={{
-                  padding: "10px 16px",
-                  borderRadius: "30px",
-                  background: "#12304a",
-                  color: "#7cdfff"
-                }}
-              >
-                {name}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </main>
-  );
-}
+            display
