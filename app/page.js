@@ -22,50 +22,33 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const cardStyle = {
-    background: "#09131f",
-    border: "1px solid #204863",
-    borderRadius: "16px",
-    padding: "20px",
-  };
-
   return (
     <main
       style={{
         minHeight: "100vh",
-        background:
-          "radial-gradient(circle at top, #12304a 0%, #050505 40%, #000000 100%)",
-        color: "#ffffff",
-        padding: "24px",
+        background: "#000",
+        color: "#6dd6ff",
+        padding: "40px",
         fontFamily: "Segoe UI, sans-serif",
       }}
     >
+      <h1>ADRIAN AI OS</h1>
+
+      <p>Chief of Staff Command Center</p>
+
+      <h2>{time}</h2>
+
       <div
         style={{
-          maxWidth: "1400px",
-          margin: "0 auto",
+          marginTop: "20px",
+          border: "1px solid #6dd6ff",
+          borderRadius: "10px",
+          padding: "20px",
         }}
       >
-        {/* HEADER */}
-
-        <div
-          className="header"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "24px",
-          }}
-        >
-          <div>
-            <h1
-              className="title"
-              style={{
-                margin: 0,
-                color: "#6dd6ff",
-              }}
-            >
-              ADRIAN AI OS
-            </h1>
-
-      
+        <h3>Executive Score</h3>
+        <p>82%</p>
+      </div>
+    </main>
+  );
+}
