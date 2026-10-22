@@ -1,17 +1,10 @@
-export default function Priorities() {
+export default function Priorities({ priorities }) {
   return (
-    <div
-      style={{
-        background: "#061a27",
-        border: "1px solid #0070ad",
-        borderRadius: "16px",
-        padding: "24px",
-      }}
-    >
+    <div style={{ padding: "24px" }}>
       <h2
         style={{
-          color: "#12abdb",
           marginTop: 0,
+          color: "#12abdb",
         }}
       >
         TOP PRIORITIES
@@ -19,13 +12,33 @@ export default function Priorities() {
 
       <div
         style={{
-          lineHeight: "2",
+          display: "grid",
+          gap: "12px",
         }}
       >
-        <div>1. Contract Extensions</div>
-        <div>2. Leadership Updates</div>
-        <div>3. Staffing Review</div>
-        <div>4. Open Approvals</div>
+        {priorities.map((priority, index) => (
+          <div
+            key={priority}
+            style={{
+              display: "flex",
+              gap: "12px",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "28px",
+                color: "#12abdb",
+                fontSize: "18px",
+                fontWeight: "800",
+              }}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </div>
+
+            <div>{priority}</div>
+          </div>
+        ))}
       </div>
     </div>
   );
