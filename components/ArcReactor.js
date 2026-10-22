@@ -8,6 +8,7 @@ export default function ArcReactor() {
           from {
             transform: rotate(0deg);
           }
+
           to {
             transform: rotate(360deg);
           }
@@ -17,148 +18,168 @@ export default function ArcReactor() {
           from {
             transform: rotate(360deg);
           }
+
           to {
             transform: rotate(0deg);
           }
         }
 
         @keyframes pulse {
-          0% {
-            transform: scale(0.95);
+          0%,
+          100% {
+            transform: scale(0.96);
+            box-shadow: 0 0 24px #12abdb;
           }
 
           50% {
-            transform: scale(1.05);
+            transform: scale(1.04);
+            box-shadow: 0 0 55px #12abdb;
+          }
+        }
+
+        @keyframes progressPulse {
+          0%,
+          100% {
+            filter: drop-shadow(0 0 4px #ffffff);
           }
 
-          100% {
-            transform: scale(0.95);
+          50% {
+            filter: drop-shadow(0 0 12px #12abdb);
           }
         }
 
         .reactor {
-          width: min(340px, 80vw);
-          height: min(340px, 80vw);
+          width: min(320px, 76vw);
+          aspect-ratio: 1;
           position: relative;
           margin: 0 auto;
         }
 
-        .ring1 {
+        .ring-one {
           position: absolute;
           inset: 0;
-          border-radius: 50%;
           border: 2px solid #12abdb;
-          animation: spin 20s linear infinite;
-          box-shadow: 0 0 20px #12abdb;
+          border-radius: 50%;
+          box-shadow:
+            0 0 22px rgba(18, 171, 219, 0.8),
+            inset 0 0 22px rgba(18, 171, 219, 0.2);
+          animation: spin 18s linear infinite;
         }
 
-        .ring2 {
+        .ring-two {
           position: absolute;
-          inset: 25px;
+          inset: 8%;
+          border: 2px dashed rgba(18, 171, 219, 0.9);
           border-radius: 50%;
-          border: 2px dashed #12abdb;
-          animation: spinReverse 12s linear infinite;
+          animation: spinReverse 10s linear infinite;
+        }
+
+        .ring-three {
+          position: absolute;
+          inset: 18%;
+          border: 1px solid rgba(18, 171, 219, 0.45);
+          border-radius: 50%;
+          animation: spin 14s linear infinite;
+        }
+
+        .progress-ring {
+          position: absolute;
+          inset: 22%;
+          border-radius: 50%;
+          background: conic-gradient(
+            #ffffff 0deg,
+            #12abdb 295deg,
+            rgba(18, 171, 219, 0.13) 295deg,
+            rgba(18, 171, 219, 0.13) 360deg
+          );
+          animation: progressPulse 2.5s ease-in-out infinite;
+        }
+
+        .progress-ring::after {
+          content: "";
+          position: absolute;
+          inset: 6px;
+          border-radius: 50%;
+          background: #04131d;
         }
 
         .scanner {
           position: absolute;
-          inset: 10px;
+          inset: 5%;
           border-radius: 50%;
-          animation: spin 5s linear infinite;
+          animation: spin 4s linear infinite;
+          z-index: 3;
         }
 
-        .beam {
+        .scanner-beam {
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 45%;
-          height: 2px;
-          background: linear-gradient(
-            to right,
-            transparent,
-            #12abdb
-          );
+          width: 46%;
+          height: 3px;
           transform-origin: left center;
+          background: linear-gradient(
+            90deg,
+            rgba(18, 171, 219, 0),
+            rgba(18, 171, 219, 0.75),
+            #ffffff
+          );
+          box-shadow:
+            0 0 8px #12abdb,
+            0 0 18px #12abdb,
+            0 0 30px rgba(18, 171, 219, 0.8);
         }
 
-        .crossHorizontal {
+        .scanner-glow {
           position: absolute;
-          width: 100%;
+          top: calc(50% - 15px);
+          left: 50%;
+          width: 42%;
+          height: 30px;
+          transform-origin: left center;
+          background: linear-gradient(
+            90deg,
+            rgba(18, 171, 219, 0),
+            rgba(18, 171, 219, 0.12)
+          );
+          clip-path: polygon(0 48%, 100% 0, 100% 100%);
+          filter: blur(3px);
+        }
+
+        .cross-horizontal {
+          position: absolute;
           top: 50%;
+          width: 100%;
           border-top: 1px solid rgba(18, 171, 219, 0.2);
         }
 
-        .crossVertical {
+        .cross-vertical {
           position: absolute;
-          height: 100%;
           left: 50%;
+          height: 100%;
           border-left: 1px solid rgba(18, 171, 219, 0.2);
         }
 
         .core {
           position: absolute;
-          inset: 90px;
-          background: #12abdb;
-          border-radius: 50%;
-          animation: pulse 3s ease-in-out infinite;
-
+          inset: 31%;
+          z-index: 5;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-
-          text-align: center;
+          overflow: hidden;
+          padding: 8px;
+          border: 2px solid rgba(255, 255, 255, 0.75);
+          border-radius: 50%;
+          background: #12abdb;
           color: #00121b;
-          font-weight: bold;
+          text-align: center;
+          animation: pulse 3s ease-in-out infinite;
         }
 
         .score {
-          font-size: clamp(24px, 4vw, 42px);
+          font-size: clamp(25px, 4vw, 38px);
+          font-weight: 800;
+          line-height: 1;
         }
-
-        .label {
-          font-size: 10px;
-          text-transform: uppercase;
-          line-height: 1.2;
-        }
-
-        .footer {
-          position: absolute;
-          bottom: -40px;
-          width: 100%;
-          text-align: center;
-          color: #12abdb;
-          font-size: 12px;
-        }
-      `}</style>
-
-      <div className="reactor">
-        <div className="ring1" />
-
-        <div className="ring2" />
-
-        <div className="scanner">
-          <div className="beam" />
-        </div>
-
-        <div className="crossHorizontal" />
-
-        <div className="crossVertical" />
-
-        <div className="core">
-          <div className="score">82%</div>
-
-          <div className="label">
-            Executive
-            <br />
-            Score
-          </div>
-        </div>
-
-        <div className="footer">
-          ENGINEERING INTELLIGENCE CORE
-        </div>
-      </div>
-    </>
-  );
-}
