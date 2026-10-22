@@ -1,5 +1,24 @@
+const scoreFactors = {
+  base: 50,
+  meetingPreparation: 20,
+  completedApprovals: 15,
+  inboxControl: 10,
+  openRiskPenalty: -5,
+};
+
+function calculateExecutiveScore(factors) {
+  const result = Object.values(factors).reduce(
+    (total, value) => total + value,
+    0
+  );
+
+  return Math.max(0, Math.min(100, result));
+}
+
 export const mockData = {
-  executiveScore: 82,
+  executiveScore: calculateExecutiveScore(scoreFactors),
+
+  scoreFactors,
 
   inbox: {
     emails: 17,
@@ -7,24 +26,59 @@ export const mockData = {
     unanswered: 2,
   },
 
+  teams: {
+    messages: 12,
+    mentions: 4,
+  },
+
+  tasks: {
+    open: 6,
+    overdue: 1,
+  },
+
   meetings: {
     today: 4,
     nextMeeting: "Leadership Sync",
     nextMeetingTime: "15:00",
+    preparationScore: 84,
   },
 
   risks: [
-    "2 unanswered emails older than 5 days",
-    "1 overdue approval",
-    "Contract expires in 14 days",
-    "Staffing review pending",
+    {
+      level: "high",
+      text: "2 unanswered emails older than 5 days",
+    },
+    {
+      level: "medium",
+      text: "1 overdue approval",
+    },
+    {
+      level: "medium",
+      text: "Contract expires in 14 days",
+    },
+    {
+      level: "low",
+      text: "Staffing review pending",
+    },
   ],
 
   decisions: [
-    "Contract Extension",
-    "Budget Approval",
-    "Hiring Request",
-    "Customer Escalation",
+    {
+      priority: "high",
+      title: "Contract Extension",
+    },
+    {
+      priority: "medium",
+      title: "Budget Approval",
+    },
+    {
+      priority: "normal",
+      title: "Hiring Request",
+    },
+    {
+      priority: "normal",
+      title: "Customer Escalation",
+    },
   ],
 
   priorities: [
@@ -33,4 +87,17 @@ export const mockData = {
     "Staffing Review",
     "Open Approvals",
   ],
+
+  aiBrief: [
+    "4 decisions require attention",
+    "2 active risks detected",
+    "3 approvals are waiting",
+    "Leadership review requires preparation",
+  ],
+
+  recommendation: {
+    title: "Review contract extension approvals",
+    reason:
+      "Two related decisions are waiting and one contract enters the 14-day risk window.",
+  },
 };
