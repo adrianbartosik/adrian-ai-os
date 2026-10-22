@@ -97,7 +97,6 @@ export const mockData = {
 
   recommendation: {
     title: "TEST RECOMMENDATION",
-    reason: "Mock data works correctly."
-      "Two related decisions are waiting and one contract enters the 14-day risk window.",
+    reason: "Mock data works correctly.",
   },
 };
