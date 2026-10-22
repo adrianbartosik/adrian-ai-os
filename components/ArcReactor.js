@@ -13,6 +13,15 @@ export default function ArcReactor() {
           }
         }
 
+        @keyframes spinReverse {
+          from {
+            transform: rotate(360deg);
+          }
+          to {
+            transform: rotate(0deg);
+          }
+        }
+
         @keyframes pulse {
           0% {
             transform: scale(0.95);
@@ -34,7 +43,7 @@ export default function ArcReactor() {
           margin: 0 auto;
         }
 
-        .ring {
+        .ring1 {
           position: absolute;
           inset: 0;
           border-radius: 50%;
@@ -48,7 +57,42 @@ export default function ArcReactor() {
           inset: 25px;
           border-radius: 50%;
           border: 2px dashed #12abdb;
-          animation: spin 12s linear infinite reverse;
+          animation: spinReverse 12s linear infinite;
+        }
+
+        .scanner {
+          position: absolute;
+          inset: 10px;
+          border-radius: 50%;
+          animation: spin 5s linear infinite;
+        }
+
+        .beam {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 45%;
+          height: 2px;
+          background: linear-gradient(
+            to right,
+            transparent,
+            #12abdb
+          );
+          transform-origin: left center;
+        }
+
+        .crossHorizontal {
+          position: absolute;
+          width: 100%;
+          top: 50%;
+          border-top: 1px solid rgba(18, 171, 219, 0.2);
+        }
+
+        .crossVertical {
+          position: absolute;
+          height: 100%;
+          left: 50%;
+          border-left: 1px solid rgba(18, 171, 219, 0.2);
         }
 
         .core {
@@ -75,6 +119,7 @@ export default function ArcReactor() {
         .label {
           font-size: 10px;
           text-transform: uppercase;
+          line-height: 1.2;
         }
 
         .footer {
@@ -88,8 +133,17 @@ export default function ArcReactor() {
       `}</style>
 
       <div className="reactor">
-        <div className="ring" />
+        <div className="ring1" />
+
         <div className="ring2" />
+
+        <div className="scanner">
+          <div className="beam" />
+        </div>
+
+        <div className="crossHorizontal" />
+
+        <div className="crossVertical" />
 
         <div className="core">
           <div className="score">82%</div>
