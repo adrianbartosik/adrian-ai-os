@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import Header from "../components/Header";
+import TopStatusBar from "../components/TopStatusBar";
 import KpiGrid from "../components/KpiGrid";
 import ArcReactor from "../components/ArcReactor";
 import SystemStatus from "../components/SystemStatus";
@@ -11,6 +12,7 @@ import Risks from "../components/Risks";
 import NextMeeting from "../components/NextMeeting";
 import DecisionQueue from "../components/DecisionQueue";
 import Priorities from "../components/Priorities";
+import ActivityRadar from "../components/ActivityRadar";
 
 export default function Home() {
   const [time, setTime] = useState("--:--");
@@ -51,9 +53,9 @@ export default function Home() {
       >
         <Header time={time} />
 
-        <div style={{ marginTop: "24px" }}>
-          <KpiGrid />
-        </div>
+        <TopStatusBar />
+
+        <KpiGrid />
 
         <div
           style={{
@@ -65,9 +67,7 @@ export default function Home() {
           }}
         >
           <SystemStatus />
-
           <ArcReactor />
-
           <AIBrief />
         </div>
 
@@ -89,11 +89,19 @@ export default function Home() {
             gridTemplateColumns: "1fr 1fr",
             gap: "24px",
             marginTop: "24px",
-            paddingBottom: "40px",
           }}
         >
           <DecisionQueue />
           <Priorities />
+        </div>
+
+        <div
+          style={{
+            marginTop: "24px",
+            paddingBottom: "40px",
+          }}
+        >
+          <ActivityRadar />
         </div>
       </div>
     </main>
