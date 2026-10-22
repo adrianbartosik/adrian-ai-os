@@ -80,8 +80,8 @@ export const mockData = {
       title: "Hiring Request",
     },
     {
-      priority
-            title: "Customer Escalation",
+      priority: "normal",
+      title: "Customer Escalation",
     },
   ],
 
