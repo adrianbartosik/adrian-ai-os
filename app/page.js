@@ -35,75 +35,137 @@ export default function Home() {
   }, []);
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background:
-          "radial-gradient(circle at top, #0b2d42 0%, #041018 35%, #000000 100%)",
-        color: "#ffffff",
-        padding: "24px",
-        fontFamily: "Segoe UI, sans-serif",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1700px",
-          margin: "0 auto",
-        }}
-      >
-        <Header time={time} />
+    <>
+      <style jsx>{`
+        .page {
+          min-height: 100vh;
+          padding: 24px;
+          overflow-x: hidden;
 
-        <TopStatusBar />
+          background:
+            linear-gradient(
+              rgba(18,171,219,.05) 1px,
+              transparent 1px
+            ),
+            linear-gradient(
+              90deg,
+              rgba(18,171,219,.05) 1px,
+              transparent 1px
+            ),
+            radial-gradient(
+              circle at top,
+              #0b2d42 0%,
+              #041018 35%,
+              #000000 100%
+            );
 
-        <KpiGrid />
+          background-size:
+            40px 40px,
+            40px 40px,
+            cover;
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1.4fr 1fr",
-            gap: "24px",
-            marginTop: "50px",
-            alignItems: "center",
-          }}
-        >
-          <SystemStatus />
-          <ArcReactor />
-          <AIBrief />
+          color: white;
+          font-family: Segoe UI, sans-serif;
+        }
+
+        .container {
+          max-width: 1700px;
+          margin: 0 auto;
+        }
+
+        .glass {
+          background: rgba(255,255,255,.03);
+          border: 1px solid rgba(18,171,219,.25);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          box-shadow:
+            0 0 20px rgba(18,171,219,.12),
+            inset 0 0 8px rgba(18,171,219,.08);
+          border-radius: 18px;
+        }
+
+        .command-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.4fr 1fr;
+          gap: 24px;
+          margin-top: 50px;
+          align-items: center;
+        }
+
+        .bottom-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          margin-top: 24px;
+        }
+
+        @media (max-width: 1000px) {
+          .command-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .bottom-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+
+      <main className="page">
+        <div className="container">
+          <Header time={time} />
+
+          <TopStatusBar />
+
+          <div style={{ marginTop: "24px" }}>
+            <KpiGrid />
+          </div>
+
+          <div className="command-grid">
+            <div className="glass">
+              <SystemStatus />
+            </div>
+
+            <ArcReactor />
+
+            <div className="glass">
+              <AIBrief />
+            </div>
+          </div>
+
+          <div
+            className="bottom-grid"
+            style={{ marginTop: "60px" }}
+          >
+            <div className="glass">
+              <Risks />
+            </div>
+
+            <div className="glass">
+              <NextMeeting />
+            </div>
+          </div>
+
+          <div className="bottom-grid">
+            <div className="glass">
+              <DecisionQueue />
+            </div>
+
+            <div className="glass">
+              <Priorities />
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "24px",
+              paddingBottom: "40px",
+            }}
+            className="glass"
+          >
+            <ActivityRadar />
+          </div>
         </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "24px",
-            marginTop: "60px",
-          }}
-        >
-          <Risks />
-          <NextMeeting />
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "24px",
-            marginTop: "24px",
-          }}
-        >
-          <DecisionQueue />
-          <Priorities />
-        </div>
-
-        <div
-          style={{
-            marginTop: "24px",
-            paddingBottom: "40px",
-          }}
-        >
-          <ActivityRadar />
-        </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
