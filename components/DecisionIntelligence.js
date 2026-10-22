@@ -1,29 +1,31 @@
 import ArcReactor from "./ArcReactor";
 
-const metrics = [
-  {
-    label: "PENDING DECISIONS",
-    value: "4",
-    tone: "#ffc857",
-  },
-  {
-    label: "ACTIVE RISKS",
-    value: "2",
-    tone: "#ff6b6b",
-  },
-  {
-    label: "APPROVALS",
-    value: "3",
-    tone: "#12abdb",
-  },
-  {
-    label: "MEETINGS TODAY",
-    value: "4",
-    tone: "#00c389",
-  },
-];
+export default function DecisionIntelligence({ data }) {
+  const metrics = [
+    {
+      label: "PENDING DECISIONS",
+      value: data.decisions.length,
+      tone: "#ffc857",
+    },
+    {
+      label: "ACTIVE RISKS",
+      value: data.risks.length,
+      tone: "#ff6b6b",
+    },
+    {
+      label: "APPROVALS",
+      value: data.inbox.approvals,
+      tone: "#12abdb",
+    },
+    {
+      label: "MEETINGS TODAY",
+      value: data.meetings.today,
+      tone: "#00c389",
+    },
+  ];
 
-export default function DecisionIntelligence() {
+  const positions = ["one", "two", "three", "four"];
+
   return (
     <>
       <style jsx>{`
@@ -38,7 +40,6 @@ export default function DecisionIntelligence() {
             "metric-three reactor metric-four";
           gap: 20px;
           align-items: center;
-          width: 100%;
         }
 
         .reactor {
@@ -47,8 +48,6 @@ export default function DecisionIntelligence() {
         }
 
         .metric {
-          position: relative;
-          min-width: 0;
           padding: 15px;
           border: 1px solid rgba(18, 171, 219, 0.28);
           border-radius: 12px;
@@ -73,16 +72,14 @@ export default function DecisionIntelligence() {
         }
 
         .value {
-          margin-bottom: 4px;
+          margin-bottom: 5px;
           font-size: 28px;
           font-weight: 800;
-          line-height: 1;
         }
 
         .label {
           color: #9bb7c7;
           font-size: 10px;
-          line-height: 1.3;
           letter-spacing: 1px;
         }
 
@@ -122,12 +119,7 @@ export default function DecisionIntelligence() {
       <section className="layer">
         {metrics.map((metric, index) => (
           <div
-            className={`metric metric-${[
-              "one",
-              "two",
-              "three",
-              "four",
-            ][index]}`}
+            className={`metric metric-${positions[index]}`}
             key={metric.label}
           >
             <div
@@ -142,7 +134,7 @@ export default function DecisionIntelligence() {
         ))}
 
         <div className="reactor">
-          <ArcReactor />
+          <ArcReactor score={data.executiveScore} />
         </div>
       </section>
     </>
