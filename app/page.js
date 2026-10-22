@@ -8,6 +8,8 @@ import KpiGrid from "../components/KpiGrid";
 import ArcReactor from "../components/ArcReactor";
 import SystemStatus from "../components/SystemStatus";
 import AIBrief from "../components/AIBrief";
+import Risks from "../components/Risks";
+import NextMeeting from "../components/NextMeeting";
 
 export default function Home() {
   const [time, setTime] = useState("--:--");
@@ -42,7 +44,7 @@ export default function Home() {
     >
       <div
         style={{
-          maxWidth: "1600px",
+          maxWidth: "1700px",
           margin: "0 auto",
         }}
       >
@@ -57,7 +59,7 @@ export default function Home() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
+            gridTemplateColumns: "1fr 1.4fr 1fr",
             gap: "24px",
             marginTop: "50px",
             alignItems: "center",
@@ -69,7 +71,13 @@ export default function Home() {
 
           <AIBrief />
         </div>
-      </div>
-    </main>
-  );
-}
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "24px",
+            marginTop: "80px",
+          }}
+        >
+       
