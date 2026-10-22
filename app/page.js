@@ -66,9 +66,7 @@ export default function Home() {
           }}
         >
           <SystemStatus />
-
           <ArcReactor />
-
           <AIBrief />
         </div>
 
@@ -80,4 +78,10 @@ export default function Home() {
             marginTop: "80px",
           }}
         >
-       
+          <Risks />
+          <NextMeeting />
+        </div>
+      </div>
+    </main>
+  );
+}
