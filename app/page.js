@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 
 import Header from "../components/Header";
 import TopStatusBar from "../components/TopStatusBar";
+import MorningBrief from "../components/MorningBrief";
 import KpiGrid from "../components/KpiGrid";
-import ArcReactor from "../components/ArcReactor";
+import DecisionIntelligence from "../components/DecisionIntelligence";
 import SystemStatus from "../components/SystemStatus";
 import AIBrief from "../components/AIBrief";
 import Risks from "../components/Risks";
@@ -40,7 +41,7 @@ export default function Home() {
         .page {
           min-height: 100vh;
           padding: 24px;
-
+          overflow-x: hidden;
           background:
             linear-gradient(
               rgba(18, 171, 219, 0.04) 1px,
@@ -54,115 +55,94 @@ export default function Home() {
             radial-gradient(
               circle at top,
               #0b2d42 0%,
-              #041018 35%,
+              #041018 38%,
               #000000 100%
             );
-
           background-size:
             40px 40px,
             40px 40px,
             cover;
-
-          color: white;
-          font-family: Segoe UI, sans-serif;
+          color: #ffffff;
+          font-family: "Segoe UI", Arial, sans-serif;
         }
 
         .container {
+          width: 100%;
           max-width: 1700px;
           margin: 0 auto;
         }
 
         .glass {
           position: relative;
-
-          background: rgba(255, 255, 255, 0.03);
-
-          border: 1px solid rgba(
-            18,
-            171,
-            219,
-            0.25
-          );
-
-          backdrop-filter: blur(12px);
-
+          overflow: hidden;
+          border: 1px solid rgba(18, 171, 219, 0.25);
           border-radius: 18px;
-
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(12px);
           box-shadow:
-            inset 0 0 12px rgba(
-              18,
-              171,
-              219,
-              0.08
-            ),
-            0 0 20px rgba(
-              18,
-              171,
-              219,
-              0.1
-            );
+            inset 0 0 12px rgba(18, 171, 219, 0.07),
+            0 0 20px rgba(18, 171, 219, 0.09);
         }
 
         .glass::before,
         .glass::after {
           content: "";
-
           position: absolute;
-
+          z-index: 2;
           width: 24px;
           height: 24px;
-
+          pointer-events: none;
           border-color: #12abdb;
           border-style: solid;
+          filter: drop-shadow(0 0 5px #12abdb);
         }
 
         .glass::before {
           top: 0;
           left: 0;
-
           border-width: 2px 0 0 2px;
         }
 
         .glass::after {
-          bottom: 0;
           right: 0;
-
+          bottom: 0;
           border-width: 0 2px 2px 0;
         }
 
-        .command-grid {
-          display: grid;
-
-          grid-template-columns:
-            1fr
-            1.4fr
-            1fr;
-
-          gap: 24px;
-
-          margin-top: 50px;
-
-          align-items: center;
+        .decision-section {
+          margin-top: 44px;
         }
 
-        .bottom-grid {
+        .support-grid {
           display: grid;
-
-          grid-template-columns:
-            1fr 1fr;
-
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 24px;
-
           margin-top: 24px;
         }
 
-        @media (max-width: 1000px) {
-          .command-grid {
-            grid-template-columns: 1fr;
+        .activity {
+          margin-top: 24px;
+          margin-bottom: 40px;
+        }
+
+        @media (max-width: 800px) {
+          .page {
+            padding: 16px;
           }
 
-          .bottom-grid {
+          .support-grid {
             grid-template-columns: 1fr;
+            gap: 18px;
+          }
+
+          .decision-section {
+            margin-top: 32px;
+          }
+        }
+
+        @media (max-width: 440px) {
+          .page {
+            padding: 12px;
           }
         }
       `}</style>
@@ -173,26 +153,27 @@ export default function Home() {
 
           <TopStatusBar />
 
+          <MorningBrief />
+
           <div style={{ marginTop: "24px" }}>
             <KpiGrid />
           </div>
 
-          <div className="command-grid">
+          <section className="decision-section">
+            <DecisionIntelligence />
+          </section>
+
+          <section className="support-grid">
             <div className="glass">
               <SystemStatus />
             </div>
 
-            <ArcReactor />
-
             <div className="glass">
               <AIBrief />
             </div>
-          </div>
+          </section>
 
-          <div
-            className="bottom-grid"
-            style={{ marginTop: "60px" }}
-          >
+          <section className="support-grid">
             <div className="glass">
               <Risks />
             </div>
@@ -200,9 +181,9 @@ export default function Home() {
             <div className="glass">
               <NextMeeting />
             </div>
-          </div>
+          </section>
 
-          <div className="bottom-grid">
+          <section className="support-grid">
             <div className="glass">
               <DecisionQueue />
             </div>
@@ -210,15 +191,9 @@ export default function Home() {
             <div className="glass">
               <Priorities />
             </div>
-          </div>
+          </section>
 
-          <div
-            className="glass"
-            style={{
-              marginTop: "24px",
-              paddingBottom: "20px",
-            }}
-          >
+          <div className="glass activity">
             <ActivityRadar />
           </div>
         </div>
