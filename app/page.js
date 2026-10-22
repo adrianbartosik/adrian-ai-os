@@ -82,12 +82,14 @@ export default function Home() {
         .glass {
           position: relative;
           overflow: hidden;
-          border: 1px solid rgba(18, 171, 219, 0.25);
+          border: 1px solid
+            rgba(18, 171, 219, 0.25);
           border-radius: 18px;
           background: rgba(255, 255, 255, 0.03);
           backdrop-filter: blur(12px);
           box-shadow:
-            inset 0 0 12px rgba(18, 171, 219, 0.07),
+            inset 0 0 12px
+              rgba(18, 171, 219, 0.07),
             0 0 20px rgba(18, 171, 219, 0.09);
         }
 
@@ -122,9 +124,41 @@ export default function Home() {
 
         .support-grid {
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns:
+            repeat(2, minmax(0, 1fr));
           gap: 24px;
           margin-top: 24px;
+        }
+
+        .score-panel {
+          padding: 24px;
+        }
+
+        .score-title {
+          margin-top: 0;
+          color: #12abdb;
+        }
+
+        .score-lines {
+          display: grid;
+          gap: 10px;
+        }
+
+        .score-line {
+          display: flex;
+          justify-content: space-between;
+          gap: 18px;
+          color: #9bb7c7;
+        }
+
+        .score-value {
+          color: #ffffff;
+          font-weight: 700;
+        }
+
+        .score-total {
+          margin-bottom: 0;
+          color: #12abdb;
         }
 
         .activity {
@@ -141,6 +175,10 @@ export default function Home() {
             grid-template-columns: 1fr;
             gap: 18px;
           }
+
+          .decision-section {
+            margin-top: 32px;
+          }
         }
 
         @media (max-width: 440px) {
@@ -156,7 +194,7 @@ export default function Home() {
 
           <TopStatusBar />
 
-          <MorningBrief />
+          <MorningBrief data={mockData} />
 
           <div style={{ marginTop: "24px" }}>
             <KpiGrid data={mockData} />
@@ -182,7 +220,9 @@ export default function Home() {
             </div>
 
             <div className="glass">
-              <NextMeeting />
+              <NextMeeting
+                meeting={mockData.meetings}
+              />
             </div>
           </section>
 
@@ -205,45 +245,71 @@ export default function Home() {
               <CommandPalette actions={actions} />
             </div>
 
-            <div className="glass">
-              <div style={{ padding: "24px" }}>
-                <h2
-                  style={{
-                    marginTop: 0,
-                    color: "#12abdb",
-                  }}
-                >
-                  SCORE BREAKDOWN
-                </h2>
+            <div className="glass score-panel">
+              <h2 className="score-title">
+                SCORE BREAKDOWN
+              </h2>
 
-                <div>
-                  Base score: {mockData.scoreFactors.base}
+              <div className="score-lines">
+                <div className="score-line">
+                  <span>Base score</span>
+
+                  <span className="score-value">
+                    {mockData.scoreFactors.base}
+                  </span>
                 </div>
 
-                <div>
-                  Meeting preparation: +
-                  {mockData.scoreFactors.meetingPreparation}
+                <div className="score-line">
+                  <span>Meeting preparation</span>
+
+                  <span className="score-value">
+                    +
+                    {
+                      mockData.scoreFactors
+                        .meetingPreparation
+                    }
+                  </span>
                 </div>
 
-                <div>
-                  Completed approvals: +
-                  {mockData.scoreFactors.completedApprovals}
+                <div className="score-line">
+                  <span>Completed approvals</span>
+
+                  <span className="score-value">
+                    +
+                    {
+                      mockData.scoreFactors
+                        .completedApprovals
+                    }
+                  </span>
                 </div>
 
-                <div>
-                  Inbox control: +
-                  {mockData.scoreFactors.inboxControl}
+                <div className="score-line">
+                  <span>Inbox control</span>
+
+                  <span className="score-value">
+                    +
+                    {
+                      mockData.scoreFactors
+                        .inboxControl
+                    }
+                  </span>
                 </div>
 
-                <div>
-                  Open risks:{" "}
-                  {mockData.scoreFactors.openRiskPenalty}
-                </div>
+                <div className="score-line">
+                  <span>Open risks</span>
 
-                <h3 style={{ color: "#12abdb" }}>
-                  Total: {mockData.executiveScore}%
-                </h3>
+                  <span className="score-value">
+                    {
+                      mockData.scoreFactors
+                        .openRiskPenalty
+                    }
+                  </span>
+                </div>
               </div>
+
+              <h3 className="score-total">
+                Total: {mockData.executiveScore}%
+              </h3>
             </div>
           </section>
 
