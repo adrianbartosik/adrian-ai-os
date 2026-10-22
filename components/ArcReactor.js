@@ -136,7 +136,7 @@ export default function ArcReactor() {
           <div
             style={{
               position: "absolute",
-              inset: "115px",
+              inset: "95px",
               borderRadius: "50%",
               background: "#12abdb",
               animation: "pulse 3s ease-in-out infinite",
@@ -146,12 +146,15 @@ export default function ArcReactor() {
               alignItems: "center",
               color: "#00121b",
               fontWeight: "bold",
+              textAlign: "center",
+              padding: "10px",
             }}
           >
             <div
               style={{
                 fontSize: "42px",
-                lineHeight: 1,
+                lineHeight: "42px",
+                fontWeight: "700",
               }}
             >
               82%
@@ -159,12 +162,17 @@ export default function ArcReactor() {
 
             <div
               style={{
-                fontSize: "11px",
-                letterSpacing: "2px",
-                marginTop: "8px",
+                fontSize: "9px",
+                marginTop: "6px",
+                letterSpacing: "1px",
+                lineHeight: "11px",
+                maxWidth: "80px",
+                textTransform: "uppercase",
               }}
             >
-              EXECUTIVE SCORE
+              Executive
+              <br />
+              Score
             </div>
           </div>
 
