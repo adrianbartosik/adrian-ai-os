@@ -1,10 +1,13 @@
-export default function CommandPalette() {
+"use client";
+
+import { useState } from "react";
+
+export default function CommandPalette({ actions }) {
+  const [selectedAction, setSelectedAction] =
+    useState("Select an action");
+
   return (
-    <div
-      style={{
-        padding: "24px",
-      }}
-    >
+    <div style={{ padding: "24px" }}>
       <h2
         style={{
           marginTop: 0,
@@ -16,42 +19,57 @@ export default function CommandPalette() {
 
       <div
         style={{
+          marginBottom: "16px",
+          color: "#9bb7c7",
+          fontSize: "13px",
+        }}
+      >
+        Current command: {selectedAction}
+      </div>
+
+      <div
+        style={{
           display: "grid",
           gap: "12px",
         }}
       >
-        <button className="action-btn">
-          Review Contract Extensions
-        </button>
-
-        <button className="action-btn">
-          Open Approval Queue
-        </button>
-
-        <button className="action-btn">
-          Prepare Leadership Sync
-        </button>
-
-        <button className="action-btn">
-          Review Escalations
-        </button>
+        {actions.map((action) => (
+          <button
+            className="action-button"
+            key={action}
+            onClick={() => setSelectedAction(action)}
+            type="button"
+          >
+            {action}
+          </button>
+        ))}
       </div>
 
       <style jsx>{`
-        .action-btn {
-          background: rgba(18, 171, 219, 0.08);
-          border: 1px solid rgba(18, 171, 219, 0.4);
-          color: white;
+        .action-button {
           padding: 14px;
+          border: 1px solid rgba(18, 171, 219, 0.4);
           border-radius: 12px;
-          cursor: pointer;
+          background: rgba(18, 171, 219, 0.07);
+          color: #ffffff;
+          font: inherit;
           text-align: left;
-          transition: 0.2s;
+          cursor: pointer;
+          transition:
+            background 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.2s ease;
         }
 
-        .action-btn:hover {
+        .action-button:hover {
+          border-color: #12abdb;
           background: rgba(18, 171, 219, 0.16);
           transform: translateY(-2px);
+        }
+
+        .action-button:focus-visible {
+          outline: 2px solid #ffffff;
+          outline-offset: 2px;
         }
       `}</style>
     </div>
