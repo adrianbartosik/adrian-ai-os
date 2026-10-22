@@ -1,121 +1,81 @@
-"use client";
-
 export default function ArcReactor() {
   return (
-    <>
-      <style jsx>{`
-        @keyframes rotateSlow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "min(340px, 80vw)",
+          height: "min(340px, 80vw)",
+          borderRadius: "50%",
+          border: "3px solid #12abdb",
+          boxShadow: "0 0 40px #12abdb",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: "8%",
+            borderRadius: "50%",
+            border: "2px dashed #12abdb",
+          }}
+        />
 
-        @keyframes rotateReverse {
-          from {
-            transform: rotate(360deg);
-          }
-          to {
-            transform: rotate(0deg);
-          }
-        }
+        <div
+          style={{
+            position: "absolute",
+            inset: "18%",
+            borderRadius: "50%",
+            border: "2px solid rgba(18,171,219,.4)",
+          }}
+        />
 
-        @keyframes pulse {
-          0% {
-            transform: scale(0.95);
-            box-shadow: 0 0 30px #12abdb;
-          }
-          50% {
-            transform: scale(1.05);
-            box-shadow: 0 0 80px #12abdb;
-          }
-          100% {
-            transform: scale(0.95);
-            box-shadow: 0 0 30px #12abdb;
-          }
-        }
-
-        @keyframes scan {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        .arc-wrapper {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: relative;
-        }
-
-        .arc-reactor {
-          width: clamp(220px, 28vw, 340px);
-          height: clamp(220px, 28vw, 340px);
-          position: relative;
-        }
-
-        .arc-core {
-          position: absolute;
-          inset: 28%;
-          border-radius: 50%;
-          background: #12abdb;
-          animation: pulse 3s ease-in-out infinite;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          color: #00121b;
-          font-weight: bold;
-          text-align: center;
-          padding: 10px;
-        }
-
-        .score {
-          font-size: clamp(24px, 4vw, 42px);
-          line-height: 1;
-        }
-
-        .label {
-          font-size: clamp(8px, 1vw, 10px);
-          margin-top: 6px;
-          letter-spacing: 1px;
-          line-height: 1.2;
-          text-transform: uppercase;
-          max-width: 80px;
-        }
-
-        .reactor-footer {
-          position: absolute;
-          bottom: -50px;
-          width: 100%;
-          text-align: center;
-          color: #12abdb;
-          letter-spacing: 2px;
-          font-size: 12px;
-        }
-
-        @media (max-width: 768px) {
-          .reactor-footer {
-            font-size: 10px;
-            letter-spacing: 1px;
-          }
-        }
-      `}</style>
-
-      <div className="arc-wrapper">
-        <div className="arc-reactor">
-          {/* Outer Ring */}
+        <div
+          style={{
+            position: "absolute",
+            inset: "28%",
+            borderRadius: "50%",
+            background: "#12abdb",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            color: "#00121b",
+            fontWeight: "bold",
+            padding: "10px",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "clamp(24px,4vw,42px)",
+            }}
+          >
+            82%
+          </div>
 
           <div
             style={{
-              position: "absolute",
-              inset: 0,
-              borderRadius: "50%",
-              border: "2px solid #12abdb",
-              animation: "rotateSlow 20s linear infinite",
-              boxShadow: "0 0 40px rgba(18,
+              fontSize: "clamp(8px,1vw,10px)",
+              lineHeight: "1.2",
+              textTransform: "uppercase",
+            }}
+          >
+            Executive
+            <br />
+            Score
+          </div>
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-40px",
+            width: "100%",
+            textAlign: "center",
+            color: "#12abdb
