@@ -1,17 +1,16 @@
-export default function Risks() {
+const colors = {
+  high: "#ff6b6b",
+  medium: "#ffc857",
+  low: "#12abdb",
+};
+
+export default function Risks({ risks }) {
   return (
-    <div
-      style={{
-        background: "#061a27",
-        border: "1px solid #0070ad",
-        borderRadius: "16px",
-        padding: "24px",
-      }}
-    >
+    <div style={{ padding: "24px" }}>
       <h2
         style={{
-          color: "#ff6b6b",
           marginTop: 0,
+          color: "#ff6b6b",
         }}
       >
         RISKS
@@ -19,13 +18,35 @@ export default function Risks() {
 
       <div
         style={{
-          lineHeight: "2",
+          display: "grid",
+          gap: "13px",
         }}
       >
-        <div>🔴 2 unanswered emails older than 5 days</div>
-        <div>🟠 1 overdue approval</div>
-        <div>🟠 Contract expires in 14 days</div>
-        <div>🟡 Staffing review pending</div>
+        {risks.map((risk) => (
+          <div
+            key={risk.text}
+            style={{
+              display: "flex",
+              gap: "10px",
+              alignItems: "flex-start",
+            }}
+          >
+            <span
+              style={{
+                display: "block",
+                width: "8px",
+                height: "8px",
+                marginTop: "6px",
+                flexShrink: 0,
+                borderRadius: "50%",
+                background: colors[risk.level],
+                boxShadow: `0 0 8px ${colors[risk.level]}`,
+              }}
+            />
+
+            <span>{risk.text}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
