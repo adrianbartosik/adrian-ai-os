@@ -6,6 +6,8 @@ import Header from "../components/Header";
 import ExecutiveScore from "../components/ExecutiveScore";
 import KpiGrid from "../components/KpiGrid";
 import ArcReactor from "../components/ArcReactor";
+import SystemStatus from "../components/SystemStatus";
+import AIBrief from "../components/AIBrief";
 
 export default function Home() {
   const [time, setTime] = useState("--:--");
@@ -32,7 +34,7 @@ export default function Home() {
       style={{
         minHeight: "100vh",
         background:
-          "radial-gradient(circle at top, #12304a 0%, #050505 40%, #000000 100%)",
+          "radial-gradient(circle at top, #0b2d42 0%, #041018 35%, #000000 100%)",
         color: "#ffffff",
         padding: "24px",
         fontFamily: "Segoe UI, sans-serif",
@@ -40,7 +42,7 @@ export default function Home() {
     >
       <div
         style={{
-          maxWidth: "1400px",
+          maxWidth: "1600px",
           margin: "0 auto",
         }}
       >
@@ -54,11 +56,18 @@ export default function Home() {
 
         <div
           style={{
-            marginTop: "40px",
-            marginBottom: "40px",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: "24px",
+            marginTop: "50px",
+            alignItems: "center",
           }}
         >
+          <SystemStatus />
+
           <ArcReactor />
+
+          <AIBrief />
         </div>
       </div>
     </main>
