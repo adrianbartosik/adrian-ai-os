@@ -8,12 +8,21 @@ export default function Risks() {
         padding: "24px",
       }}
     >
-      <h2 style={{ color: "#ff6b6b" }}>
+      <h2
+        style={{
+          color: "#ff6b6b",
+          marginTop: 0,
+        }}
+      >
         RISKS
       </h2>
 
-      <div style={{ lineHeight: "2" }}>
-        <div>🔴 2 unanswered emails > 5 days</div>
+      <div
+        style={{
+          lineHeight: "2",
+        }}
+      >
+        <div>🔴 2 unanswered emails older than 5 days</div>
         <div>🟠 1 overdue approval</div>
         <div>🟠 Contract expires in 14 days</div>
         <div>🟡 Staffing review pending</div>
