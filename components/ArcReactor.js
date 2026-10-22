@@ -38,10 +38,10 @@ export default function ArcReactor() {
         }
 
         @keyframes scan {
-          0% {
+          from {
             transform: rotate(0deg);
           }
-          100% {
+          to {
             transform: rotate(360deg);
           }
         }
@@ -62,8 +62,6 @@ export default function ArcReactor() {
             position: "relative",
           }}
         >
-          {/* Ring 1 */}
-
           <div
             style={{
               position: "absolute",
@@ -75,8 +73,6 @@ export default function ArcReactor() {
             }}
           />
 
-          {/* Ring 2 */}
-
           <div
             style={{
               position: "absolute",
@@ -87,8 +83,6 @@ export default function ArcReactor() {
             }}
           />
 
-          {/* Ring 3 */}
-
           <div
             style={{
               position: "absolute",
@@ -98,8 +92,6 @@ export default function ArcReactor() {
               animation: "rotateSlow 12s linear infinite",
             }}
           />
-
-          {/* Scanner */}
 
           <div
             style={{
@@ -123,8 +115,6 @@ export default function ArcReactor() {
             />
           </div>
 
-          {/* Crosshair */}
-
           <div
             style={{
               position: "absolute",
@@ -143,8 +133,6 @@ export default function ArcReactor() {
             }}
           />
 
-          {/* Core */}
-
           <div
             style={{
               position: "absolute",
@@ -152,10 +140,33 @@ export default function ArcReactor() {
               borderRadius: "50%",
               background: "#12abdb",
               animation: "pulse 3s ease-in-out infinite",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "#00121b",
+              fontWeight: "bold",
             }}
-          />
+          >
+            <div
+              style={{
+                fontSize: "42px",
+                lineHeight: 1,
+              }}
+            >
+              82%
+            </div>
 
-          {/* Label */}
+            <div
+              style={{
+                fontSize: "11px",
+                letterSpacing: "2px",
+                marginTop: "8px",
+              }}
+            >
+              EXECUTIVE SCORE
+            </div>
+          </div>
 
           <div
             style={{
