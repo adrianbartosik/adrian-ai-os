@@ -38,9 +38,9 @@ export const mockData = {
 
   meetings: {
     today: 4,
-    nextMeeting: "Leadership Sync",
-    nextMeetingTime: "15:00",
-    preparationScore: 84,
+    nextMeeting: "TEST MEETING",
+    nextMeetingTime: "23:59",
+    preparationScore: 83,
   },
 
   risks: [
@@ -96,8 +96,8 @@ export const mockData = {
   ],
 
   recommendation: {
-    title: "Review contract extension approvals",
-    reason:
+    title: "TEST RECOMMENDATION",
+    reason: "Mock data works correctly."
       "Two related decisions are waiting and one contract enters the 14-day risk window.",
   },
 };
