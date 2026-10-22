@@ -1,6 +1,6 @@
 "use client";
 
-export default function ArcReactor() {
+export default function ArcReactor({ score }) {
   return (
     <>
       <style jsx>{`
@@ -58,70 +58,109 @@ export default function ArcReactor() {
 
         .beam {
           position: absolute;
-          left: 50%;
           top: 50%;
+          left: 50%;
           width: 45%;
           height: 3px;
+          transform-origin: left center;
           background: linear-gradient(
             to right,
             transparent,
             #12abdb,
             white
           );
-          transform-origin: left center;
           box-shadow:
             0 0 10px #12abdb,
             0 0 20px #12abdb;
         }
 
+        .progress {
+          position: absolute;
+          inset: 54px;
+          border-radius: 50%;
+          background: conic-gradient(
+            #12abdb 0deg,
+            #12abdb var(--score-angle),
+            rgba(18, 171, 219, 0.12) var(--score-angle),
+            rgba(18, 171, 219, 0.12) 360deg
+          );
+          box-shadow: 0 0 14px rgba(18, 171, 219, 0.6);
+        }
+
+        .progress::after {
+          content: "";
+          position: absolute;
+          inset: 6px;
+          border-radius: 50%;
+          background: #04131d;
+        }
+
         .core {
           position: absolute;
-          inset: 30%;
-          border-radius: 50%;
-          background: #12abdb;
-          animation: pulse 3s ease-in-out infinite;
-
+          inset: 31%;
+          z-index: 5;
           display: flex;
           flex-direction: column;
-          justify-content: center;
           align-items: center;
-
+          justify-content: center;
+          border-radius: 50%;
+          background: #12abdb;
           color: #00121b;
-          font-weight: bold;
           text-align: center;
+          animation: pulse 3s ease-in-out infinite;
         }
 
         .score {
-          font-size: 36px;
+          font-size: 34px;
+          font-weight: 800;
+          line-height: 1;
         }
 
         .label {
-          font-size: 9px;
-          text-transform: uppercase;
+          margin-top: 4px;
+          font-size: 8px;
+          font-weight: 800;
           line-height: 1.2;
+          text-transform: uppercase;
         }
 
         .footer {
           position: absolute;
-          width: 100%;
           bottom: -35px;
-          text-align: center;
+          width: 100%;
           color: #12abdb;
-          font-size: 12px;
+          font-size: 11px;
+          letter-spacing: 1px;
+          text-align: center;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .outer,
+          .inner,
+          .scanner,
+          .core {
+            animation: none;
+          }
         }
       `}</style>
 
-      <div className="reactor">
+      <div
+        className="reactor"
+        style={{
+          "--score-angle": `${score * 3.6}deg`,
+        }}
+      >
         <div className="outer" />
-
         <div className="inner" />
+
+        <div className="progress" />
 
         <div className="scanner">
           <div className="beam" />
         </div>
 
         <div className="core">
-          <div className="score">82%</div>
+          <div className="score">{score}%</div>
 
           <div className="label">
             Executive
