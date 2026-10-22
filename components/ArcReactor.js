@@ -1,81 +1,110 @@
+"use client";
+
 export default function ArcReactor() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          width: "min(340px, 80vw)",
-          height: "min(340px, 80vw)",
-          borderRadius: "50%",
-          border: "3px solid #12abdb",
-          boxShadow: "0 0 40px #12abdb",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: "8%",
-            borderRadius: "50%",
-            border: "2px dashed #12abdb",
-          }}
-        />
+    <>
+      <style jsx>{`
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
 
-        <div
-          style={{
-            position: "absolute",
-            inset: "18%",
-            borderRadius: "50%",
-            border: "2px solid rgba(18,171,219,.4)",
-          }}
-        />
+        @keyframes pulse {
+          0% {
+            transform: scale(0.95);
+          }
 
-        <div
-          style={{
-            position: "absolute",
-            inset: "28%",
-            borderRadius: "50%",
-            background: "#12abdb",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            color: "#00121b",
-            fontWeight: "bold",
-            padding: "10px",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "clamp(24px,4vw,42px)",
-            }}
-          >
-            82%
-          </div>
+          50% {
+            transform: scale(1.05);
+          }
 
-          <div
-            style={{
-              fontSize: "clamp(8px,1vw,10px)",
-              lineHeight: "1.2",
-              textTransform: "uppercase",
-            }}
-          >
+          100% {
+            transform: scale(0.95);
+          }
+        }
+
+        .reactor {
+          width: min(340px, 80vw);
+          height: min(340px, 80vw);
+          position: relative;
+          margin: 0 auto;
+        }
+
+        .ring {
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          border: 2px solid #12abdb;
+          animation: spin 20s linear infinite;
+          box-shadow: 0 0 20px #12abdb;
+        }
+
+        .ring2 {
+          position: absolute;
+          inset: 25px;
+          border-radius: 50%;
+          border: 2px dashed #12abdb;
+          animation: spin 12s linear infinite reverse;
+        }
+
+        .core {
+          position: absolute;
+          inset: 90px;
+          background: #12abdb;
+          border-radius: 50%;
+          animation: pulse 3s ease-in-out infinite;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          text-align: center;
+          color: #00121b;
+          font-weight: bold;
+        }
+
+        .score {
+          font-size: clamp(24px, 4vw, 42px);
+        }
+
+        .label {
+          font-size: 10px;
+          text-transform: uppercase;
+        }
+
+        .footer {
+          position: absolute;
+          bottom: -40px;
+          width: 100%;
+          text-align: center;
+          color: #12abdb;
+          font-size: 12px;
+        }
+      `}</style>
+
+      <div className="reactor">
+        <div className="ring" />
+        <div className="ring2" />
+
+        <div className="core">
+          <div className="score">82%</div>
+
+          <div className="label">
             Executive
             <br />
             Score
           </div>
         </div>
 
-        <div
-          style={{
-            position: "absolute",
-            bottom: "-40px",
-            width: "100%",
-            textAlign: "center",
-            color: "#12abdb
+        <div className="footer">
+          ENGINEERING INTELLIGENCE CORE
+        </div>
+      </div>
+    </>
+  );
+}
