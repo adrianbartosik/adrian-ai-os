@@ -1,5 +1,5 @@
 const scoreFactors = {
-  base: 50,
+  base: 42,
   meetingPreparation: 20,
   completedApprovals: 15,
   inboxControl: 10,
@@ -17,6 +17,10 @@ function calculateExecutiveScore(factors) {
 
 export const mockData = {
   executiveScore: calculateExecutiveScore(scoreFactors),
+
+  scoreTrend: 4,
+
+  scoreStatus: "EXCELLENT",
 
   scoreFactors,
 
@@ -38,9 +42,9 @@ export const mockData = {
 
   meetings: {
     today: 4,
-    nextMeeting: "TEST MEETING",
-    nextMeetingTime: "23:59",
-    preparationScore: 83,
+    nextMeeting: "Leadership Sync",
+    nextMeetingTime: "15:00",
+    preparationScore: 84,
   },
 
   risks: [
@@ -76,8 +80,8 @@ export const mockData = {
       title: "Hiring Request",
     },
     {
-      priority: "normal",
-      title: "Customer Escalation",
+      priority
+            title: "Customer Escalation",
     },
   ],
 
@@ -96,7 +100,16 @@ export const mockData = {
   ],
 
   recommendation: {
-    title: "TEST RECOMMENDATION",
-    reason: "Mock data works correctly.",
+    title: "Review contract extension approvals",
+    reason:
+      "Two related decisions are waiting and one contract enters the 14-day risk window.",
+  },
+
+  activityRadar: {
+    mon: 4,
+    tue: 6,
+    wed: 3,
+    thu: 7,
+    fri: 5,
   },
 };
