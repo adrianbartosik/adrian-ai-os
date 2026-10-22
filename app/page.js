@@ -40,16 +40,15 @@ export default function Home() {
         .page {
           min-height: 100vh;
           padding: 24px;
-          overflow-x: hidden;
 
           background:
             linear-gradient(
-              rgba(18,171,219,.05) 1px,
+              rgba(18, 171, 219, 0.04) 1px,
               transparent 1px
             ),
             linear-gradient(
               90deg,
-              rgba(18,171,219,.05) 1px,
+              rgba(18, 171, 219, 0.04) 1px,
               transparent 1px
             ),
             radial-gradient(
@@ -74,28 +73,86 @@ export default function Home() {
         }
 
         .glass {
-          background: rgba(255,255,255,.03);
-          border: 1px solid rgba(18,171,219,.25);
+          position: relative;
+
+          background: rgba(255, 255, 255, 0.03);
+
+          border: 1px solid rgba(
+            18,
+            171,
+            219,
+            0.25
+          );
+
           backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          box-shadow:
-            0 0 20px rgba(18,171,219,.12),
-            inset 0 0 8px rgba(18,171,219,.08);
+
           border-radius: 18px;
+
+          box-shadow:
+            inset 0 0 12px rgba(
+              18,
+              171,
+              219,
+              0.08
+            ),
+            0 0 20px rgba(
+              18,
+              171,
+              219,
+              0.1
+            );
+        }
+
+        .glass::before,
+        .glass::after {
+          content: "";
+
+          position: absolute;
+
+          width: 24px;
+          height: 24px;
+
+          border-color: #12abdb;
+          border-style: solid;
+        }
+
+        .glass::before {
+          top: 0;
+          left: 0;
+
+          border-width: 2px 0 0 2px;
+        }
+
+        .glass::after {
+          bottom: 0;
+          right: 0;
+
+          border-width: 0 2px 2px 0;
         }
 
         .command-grid {
           display: grid;
-          grid-template-columns: 1fr 1.4fr 1fr;
+
+          grid-template-columns:
+            1fr
+            1.4fr
+            1fr;
+
           gap: 24px;
+
           margin-top: 50px;
+
           align-items: center;
         }
 
         .bottom-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+
+          grid-template-columns:
+            1fr 1fr;
+
           gap: 24px;
+
           margin-top: 24px;
         }
 
@@ -156,11 +213,11 @@ export default function Home() {
           </div>
 
           <div
+            className="glass"
             style={{
               marginTop: "24px",
-              paddingBottom: "40px",
+              paddingBottom: "20px",
             }}
-            className="glass"
           >
             <ActivityRadar />
           </div>
