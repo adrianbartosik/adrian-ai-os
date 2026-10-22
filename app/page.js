@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { mockData } from "../data/mockData";
+
 import Header from "../components/Header";
 import TopStatusBar from "../components/TopStatusBar";
 import MorningBrief from "../components/MorningBrief";
@@ -13,6 +15,7 @@ import Risks from "../components/Risks";
 import NextMeeting from "../components/NextMeeting";
 import DecisionQueue from "../components/DecisionQueue";
 import Priorities from "../components/Priorities";
+import CommandPalette from "../components/CommandPalette";
 import ActivityRadar from "../components/ActivityRadar";
 
 export default function Home() {
@@ -34,6 +37,10 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, []);
+
+  const actions = mockData.decisions.map(
+    (decision) => decision.title
+  );
 
   return (
     <>
@@ -134,10 +141,6 @@ export default function Home() {
             grid-template-columns: 1fr;
             gap: 18px;
           }
-
-          .decision-section {
-            margin-top: 32px;
-          }
         }
 
         @media (max-width: 440px) {
@@ -156,11 +159,11 @@ export default function Home() {
           <MorningBrief />
 
           <div style={{ marginTop: "24px" }}>
-            <KpiGrid />
+            <KpiGrid data={mockData} />
           </div>
 
           <section className="decision-section">
-            <DecisionIntelligence />
+            <DecisionIntelligence data={mockData} />
           </section>
 
           <section className="support-grid">
@@ -169,13 +172,13 @@ export default function Home() {
             </div>
 
             <div className="glass">
-              <AIBrief />
+              <AIBrief items={mockData.aiBrief} />
             </div>
           </section>
 
           <section className="support-grid">
             <div className="glass">
-              <Risks />
+              <Risks risks={mockData.risks} />
             </div>
 
             <div className="glass">
@@ -185,11 +188,62 @@ export default function Home() {
 
           <section className="support-grid">
             <div className="glass">
-              <DecisionQueue />
+              <DecisionQueue
+                decisions={mockData.decisions}
+              />
             </div>
 
             <div className="glass">
-              <Priorities />
+              <Priorities
+                priorities={mockData.priorities}
+              />
+            </div>
+          </section>
+
+          <section className="support-grid">
+            <div className="glass">
+              <CommandPalette actions={actions} />
+            </div>
+
+            <div className="glass">
+              <div style={{ padding: "24px" }}>
+                <h2
+                  style={{
+                    marginTop: 0,
+                    color: "#12abdb",
+                  }}
+                >
+                  SCORE BREAKDOWN
+                </h2>
+
+                <div>
+                  Base score: {mockData.scoreFactors.base}
+                </div>
+
+                <div>
+                  Meeting preparation: +
+                  {mockData.scoreFactors.meetingPreparation}
+                </div>
+
+                <div>
+                  Completed approvals: +
+                  {mockData.scoreFactors.completedApprovals}
+                </div>
+
+                <div>
+                  Inbox control: +
+                  {mockData.scoreFactors.inboxControl}
+                </div>
+
+                <div>
+                  Open risks:{" "}
+                  {mockData.scoreFactors.openRiskPenalty}
+                </div>
+
+                <h3 style={{ color: "#12abdb" }}>
+                  Total: {mockData.executiveScore}%
+                </h3>
+              </div>
             </div>
           </section>
 
