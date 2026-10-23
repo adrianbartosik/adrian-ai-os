@@ -1,4 +1,7 @@
-export default function Header({ time }) {
+export default function Header({
+  time,
+  dateInfo,
+}) {
   return (
     <>
       <style jsx>{`
@@ -39,9 +42,20 @@ export default function Header({ time }) {
           line-height: 1;
         }
 
+        .date {
+          margin-top: 8px;
+          color: #8fbcd6;
+          font-size: 13px;
+          letter-spacing: 1px;
+        }
+
         .subtitle {
-          margin: 0;
+          margin-top: 6px;
           color: #b8d1df;
+        }
+
+        .clockBox {
+          text-align: right;
         }
 
         .clock {
@@ -51,11 +65,23 @@ export default function Header({ time }) {
           text-shadow: 0 0 12px rgba(0, 112, 173, 0.35);
         }
 
+        .clockLabel {
+          margin-top: 6px;
+          color: #8fbcd6;
+          font-size: 11px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
         @media (max-width: 900px) {
           .header {
             flex-direction: column;
             align-items: flex-start;
             gap: 18px;
+          }
+
+          .clockBox {
+            text-align: left;
           }
 
           .title {
@@ -101,14 +127,24 @@ export default function Header({ time }) {
               ADRIAN AI OS
             </h1>
 
-            <p className="subtitle">
+            <div className="date">
+              {dateInfo}
+            </div>
+
+            <div className="subtitle">
               Chief of Staff Intelligence Platform
-            </p>
+            </div>
           </div>
         </div>
 
-        <div className="clock">
-          {time}
+        <div className="clockBox">
+          <div className="clock">
+            {time}
+          </div>
+
+          <div className="clockLabel">
+            LOCAL SYSTEM TIME
+          </div>
         </div>
       </div>
     </>
