@@ -270,36 +270,20 @@ export default function Home() {
               />
             </div>
           </section>
-
-          <section className="support-grid">
-            <div className="glass">
-              <DecisionQueue
-                decisions={mockData.decisions}
-              />
-            </div>
-
-            <div className="glass">
-              <Priorities
-                priorities={mockData.priorities}
-              />
-            </div>
-          </section>
-
-         <section className="support-grid">
+<section className="support-grid">
   <div className="glass">
-    <CommanderPanel
-      actions={mockData.commanderActions}
+    <DecisionQueue
+      decisions={mockData.decisions}
     />
   </div>
 
   <div className="glass">
-    <ScoreTrend
-      score={mockData.executiveScore}
-      trend={mockData.scoreTrend}
-      status={mockData.scoreStatus}
+    <Priorities
+      priorities={mockData.priorities}
     />
   </div>
 </section>
+
 <section className="support-grid">
   <div className="glass">
     <CommanderPanel
@@ -315,11 +299,8 @@ export default function Home() {
     />
   </div>
 </section>
-          <div className="glass activity">
-            <ActivityRadar />
-          </div>
-        </div>
-      </main>
-    </>
-  );
-}
+
+<div className="glass activity">
+  <ActivityRadar />
+</div>
+          
