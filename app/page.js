@@ -15,8 +15,9 @@ import Risks from "../components/Risks";
 import NextMeeting from "../components/NextMeeting";
 import DecisionQueue from "../components/DecisionQueue";
 import Priorities from "../components/Priorities";
-import CommandPalette from "../components/CommandPalette";
 import ActivityRadar from "../components/ActivityRadar";
+import CommanderPanel from "../components/CommanderPanel";
+import ScoreTrend from "../components/ScoreTrend";
 
 export default function Home() {
   const [time, setTime] = useState("--:--");
@@ -50,10 +51,6 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, []);
-
-  const actions = mockData.decisions.map(
-    (decision) => decision.title
-  );
 
   return (
     <>
