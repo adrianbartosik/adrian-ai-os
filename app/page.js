@@ -27,6 +27,7 @@ export default function Home() {
         new Date().toLocaleTimeString("pl-PL", {
           hour: "2-digit",
           minute: "2-digit",
+          second: "2-digit",
         })
       );
     };
