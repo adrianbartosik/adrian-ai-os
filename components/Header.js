@@ -8,66 +8,66 @@ export default function Header({ time }) {
           align-items: center;
           margin-bottom: 40px;
           padding-bottom: 20px;
-          border-bottom: 1px solid rgba(18, 171, 219, 0.3);
+          border-bottom: 1px solid rgba(0, 112, 173, 0.3);
         }
 
         .brand {
           display: flex;
           align-items: center;
-          gap: 18px;
+          gap: 20px;
         }
 
         .logo {
-          height: 50px;
+          height: 48px;
           width: auto;
           object-fit: contain;
         }
 
-        .title {
-          margin: 6px 0;
-          color: #12abdb;
-          font-size: 56px;
-          font-weight: 700;
-          line-height: 1;
-        }
-
-        .subtitle {
-          color: #a8c4d6;
-          margin: 0;
-        }
-
-        .clock {
-          font-size: 42px;
-          color: #12abdb;
-          font-weight: 700;
-          text-shadow: 0 0 15px rgba(18, 171, 219, 0.5);
-        }
-
-        .brand-tag {
-          color: #12abdb;
+        .tag {
+          color: #0070ad;
           font-size: 11px;
           letter-spacing: 2px;
           font-weight: 700;
           text-transform: uppercase;
         }
 
+        .title {
+          margin: 6px 0;
+          color: #0070ad;
+          font-size: 56px;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        .subtitle {
+          margin: 0;
+          color: #b8d1df;
+        }
+
+        .clock {
+          font-size: 42px;
+          color: #0070ad;
+          font-weight: 700;
+          text-shadow: 0 0 12px rgba(0, 112, 173, 0.35);
+        }
+
         @media (max-width: 900px) {
           .header {
             flex-direction: column;
             align-items: flex-start;
-            gap: 20px;
+            gap: 18px;
+          }
+
+          .title {
+            font-size: 40px;
           }
 
           .clock {
             font-size: 32px;
           }
 
-          .title {
-            font-size: 42px;
-          }
-
           .logo {
-            height: 40px;
+            height: 36px;
           }
         }
 
@@ -79,11 +79,7 @@ export default function Header({ time }) {
           }
 
           .title {
-            font-size: 34px;
-          }
-
-          .logo {
-            height: 32px;
+            font-size: 32px;
           }
         }
       `}</style>
@@ -97,7 +93,7 @@ export default function Header({ time }) {
           />
 
           <div>
-            <div className="brand-tag">
+            <div className="tag">
               ENGINEERING COMMAND CENTER
             </div>
 
