@@ -113,3 +113,22 @@ export const mockData = {
     fri: 5,
   },
 };
+commanderActions: [
+  {
+    priority: "HIGH",
+    title: "Review Contract Extension",
+    description: "Risk window expires in 14 days",
+  },
+
+  {
+    priority: "MEDIUM",
+    title: "Prepare Leadership Sync",
+    description: "Meeting starts today at 15:00",
+  },
+
+  {
+    priority: "MEDIUM",
+    title: "Review Budget Approval",
+    description: "Waiting 3 business days",
+  },
+],
