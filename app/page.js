@@ -285,78 +285,21 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="support-grid">
-            <div className="glass">
-              <CommandPalette actions={actions} />
-            </div>
+         <section className="support-grid">
+  <div className="glass">
+    <CommanderPanel
+      actions={mockData.commanderActions}
+    />
+  </div>
 
-            <div className="glass score-panel">
-              <h2 className="score-title">
-                SCORE BREAKDOWN
-              </h2>
-
-              <div className="score-lines">
-                <div className="score-line">
-                  <span>Base score</span>
-
-                  <span className="score-value">
-                    {mockData.scoreFactors.base}
-                  </span>
-                </div>
-
-                <div className="score-line">
-                  <span>Meeting preparation</span>
-
-                  <span className="score-value">
-                    +
-                    {
-                      mockData.scoreFactors
-                        .meetingPreparation
-                    }
-                  </span>
-                </div>
-
-                <div className="score-line">
-                  <span>Completed approvals</span>
-
-                  <span className="score-value">
-                    +
-                    {
-                      mockData.scoreFactors
-                        .completedApprovals
-                    }
-                  </span>
-                </div>
-
-                <div className="score-line">
-                  <span>Inbox control</span>
-
-                  <span className="score-value">
-                    +
-                    {
-                      mockData.scoreFactors
-                        .inboxControl
-                    }
-                  </span>
-                </div>
-
-                <div className="score-line">
-                  <span>Open risks</span>
-
-                  <span className="score-value">
-                    {
-                      mockData.scoreFactors
-                        .openRiskPenalty
-                    }
-                  </span>
-                </div>
-              </div>
-
-              <h3 className="score-total">
-                Total: {mockData.executiveScore}%
-              </h3>
-            </div>
-          </section>
+  <div className="glass">
+    <ScoreTrend
+      score={mockData.executiveScore}
+      trend={mockData.scoreTrend}
+      status={mockData.scoreStatus}
+    />
+  </div>
+</section>
 
           <div className="glass activity">
             <ActivityRadar />
