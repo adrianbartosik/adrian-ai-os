@@ -112,7 +112,6 @@ export const mockData = {
     thu: 7,
     fri: 5,
   },
-};
 commanderActions: [
   {
     priority: "HIGH",
@@ -132,3 +131,4 @@ commanderActions: [
     description: "Waiting 3 business days",
   },
 ],
+};
