@@ -146,7 +146,7 @@ export default function Home() {
   width: 800px;
   max-width: 70vw;
 
-  opacity: 0.035;
+  opacity: 0.05;
 
   pointer-events: none;
 
