@@ -212,11 +212,15 @@ export default function Home() {
             <KpiGrid data={mockData} />
           </div>
 
-          <section className="decision-section watermark-section">
-            /Capgemini_Engineering_Primary-logo_Capgemini-Blue.png
+         <section className="decision-section watermark-section">
+  <img
+    src="/Capgemini_Engineering_Primary-logo_Capgemini-Blue.png"
+    alt="Capgemini Engineering"
+    className="watermark"
+  />
 
-            <DecisionIntelligence data={mockData} />
-          </section>
+  <DecisionIntelligence data={mockData} />
+</section>
 
           <section className="support-grid">
             <div className="glass">
