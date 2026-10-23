@@ -15,35 +15,37 @@ import Risks from "../components/Risks";
 import NextMeeting from "../components/NextMeeting";
 import DecisionQueue from "../components/DecisionQueue";
 import Priorities from "../components/Priorities";
-import ActivityRadar from "../components/ActivityRadar";
 import CommanderPanel from "../components/CommanderPanel";
 import ScoreTrend from "../components/ScoreTrend";
+import ActivityRadar from "../components/ActivityRadar";
 
 export default function Home() {
-  const [time, setTime] = useState("--:--");
+  const [time, setTime] = useState("--:--:--");
   const [dateInfo, setDateInfo] = useState("");
 
   useEffect(() => {
     const updateClock = () => {
-  const now = new Date();
+      const now = new Date();
 
-  setTime(
-    now.toLocaleTimeString("pl-PL", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    })
-  );
+      setTime(
+        now.toLocaleTimeString("pl-PL", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          timeZone: "Europe/Warsaw",
+        })
+      );
 
-  setDateInfo(
-    now.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }) + " CET"
-  );
-};
+      setDateInfo(
+        now.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          timeZone: "Europe/Warsaw",
+        })
+      );
+    };
 
     updateClock();
 
@@ -59,14 +61,16 @@ export default function Home() {
           min-height: 100vh;
           padding: 24px;
           overflow-x: hidden;
+          color: #ffffff;
+          font-family: "Segoe UI", Arial, sans-serif;
           background:
             linear-gradient(
-              rgba(18, 171, 219, 0.04) 1px,
+              rgba(0, 112, 173, 0.04) 1px,
               transparent 1px
             ),
             linear-gradient(
               90deg,
-              rgba(18, 171, 219, 0.04) 1px,
+              rgba(0, 112, 173, 0.04) 1px,
               transparent 1px
             ),
             radial-gradient(
@@ -79,8 +83,6 @@ export default function Home() {
             40px 40px,
             40px 40px,
             cover;
-          color: #ffffff;
-          font-family: "Segoe UI", Arial, sans-serif;
         }
 
         .container {
@@ -92,15 +94,14 @@ export default function Home() {
         .glass {
           position: relative;
           overflow: hidden;
-          border: 1px solid
-            rgba(18, 171, 219, 0.25);
+          border: 1px solid rgba(0, 112, 173, 0.3);
           border-radius: 18px;
           background: rgba(255, 255, 255, 0.03);
           backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
           box-shadow:
-            inset 0 0 12px
-              rgba(18, 171, 219, 0.07),
-            0 0 20px rgba(18, 171, 219, 0.09);
+            inset 0 0 12px rgba(0, 112, 173, 0.08),
+            0 0 20px rgba(0, 112, 173, 0.1);
         }
 
         .glass::before,
@@ -111,9 +112,9 @@ export default function Home() {
           width: 24px;
           height: 24px;
           pointer-events: none;
-          border-color: #0070AD;
+          border-color: #0070ad;
           border-style: solid;
-          filter: drop-shadow(0 0 5px #0070AD);
+          filter: drop-shadow(0 0 5px #0070ad);
         }
 
         .glass::before {
@@ -128,73 +129,34 @@ export default function Home() {
           border-width: 0 2px 2px 0;
         }
 
-      .decision-section {
-  position: relative;
-  margin-top: 44px;
-}
-.watermark {
-  position: absolute;
+        .decision-section {
+          position: relative;
+          margin-top: 44px;
+        }
 
-  left: 50%;
-  top: 55%;
+        .watermark {
+          position: absolute;
+          top: 55%;
+          left: 50%;
+          z-index: 0;
+          width: 800px;
+          max-width: 70vw;
+          opacity: 0.05;
+          pointer-events: none;
+          transform: translate(-50%, -50%);
+          filter: grayscale(100%) brightness(3);
+        }
 
-  transform: translate(-50%, -50%);
+        .watermark-section > *:not(.watermark) {
+          position: relative;
+          z-index: 1;
+        }
 
-  width: 800px;
-  max-width: 70vw;
-
-  opacity: 0.05;
-
-  pointer-events: none;
-
-  filter:
-    grayscale(100%)
-    brightness(3);
-
-  z-index: 0;
-}
-
-.watermark-section > *:not(.watermark) {
-  position: relative;
-  z-index: 1;
-}
         .support-grid {
           display: grid;
-          grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 24px;
           margin-top: 24px;
-        }
-
-        .score-panel {
-          padding: 24px;
-        }
-
-        .score-title {
-          margin-top: 0;
-          color: #0070AD;
-        }
-
-        .score-lines {
-          display: grid;
-          gap: 10px;
-        }
-
-        .score-line {
-          display: flex;
-          justify-content: space-between;
-          gap: 18px;
-          color: #9bb7c7;
-        }
-
-        .score-value {
-          color: #ffffff;
-          font-weight: 700;
-        }
-
-        .score-total {
-          margin-bottom: 0;
-          color: #0070AD;
         }
 
         .activity {
@@ -215,21 +177,32 @@ export default function Home() {
           .decision-section {
             margin-top: 32px;
           }
+
+          .watermark {
+            width: 650px;
+            max-width: 90vw;
+          }
         }
 
         @media (max-width: 440px) {
           .page {
             padding: 12px;
           }
+
+          .watermark {
+            top: 45%;
+            max-width: 96vw;
+            opacity: 0.035;
+          }
         }
       `}</style>
 
       <main className="page">
         <div className="container">
-         <Header
-  time={time}
-  dateInfo={dateInfo}
-/>
+          <Header
+            time={time}
+            dateInfo={dateInfo}
+          />
 
           <TopStatusBar />
 
@@ -239,15 +212,11 @@ export default function Home() {
             <KpiGrid data={mockData} />
           </div>
 
-         <section className="decision-section watermark-section">
-  <img
-    src="/Capgemini_Engineering_Primary-logo_Capgemini-Blue.png"
-    alt="Capgemini Engineering"
-    className="watermark"
-  />
+          <section className="decision-section watermark-section">
+            /Capgemini_Engineering_Primary-logo_Capgemini-Blue.png
 
-  <DecisionIntelligence data={mockData} />
-</section>
+            <DecisionIntelligence data={mockData} />
+          </section>
 
           <section className="support-grid">
             <div className="glass">
@@ -270,43 +239,42 @@ export default function Home() {
               />
             </div>
           </section>
-<section className="support-grid">
-  <div className="glass">
-    <DecisionQueue
-      decisions={mockData.decisions}
-    />
-  </div>
 
-  <div className="glass">
-    <Priorities
-      priorities={mockData.priorities}
-    />
-  </div>
-</section>
+          <section className="support-grid">
+            <div className="glass">
+              <DecisionQueue
+                decisions={mockData.decisions}
+              />
+            </div>
 
-<section className="support-grid">
-  <div className="glass">
-    <CommanderPanel
-      actions={mockData.commanderActions}
-    />
-  </div>
+            <div className="glass">
+              <Priorities
+                priorities={mockData.priorities}
+              />
+            </div>
+          </section>
 
-  <div className="glass">
-    <ScoreTrend
-      score={mockData.executiveScore}
-      trend={mockData.scoreTrend}
-      status={mockData.scoreStatus}
-    />
-  </div>
-</section>
+          <section className="support-grid">
+            <div className="glass">
+              <CommanderPanel
+                actions={mockData.commanderActions}
+              />
+            </div>
 
-<div className="glass activity">
-  <ActivityRadar />
-</div>
-      
+            <div className="glass">
+              <ScoreTrend
+                score={mockData.executiveScore}
+                trend={mockData.scoreTrend}
+                status={mockData.scoreStatus}
+              />
+            </div>
+          </section>
+
+          <div className="glass activity">
+            <ActivityRadar />
+          </div>
         </div>
       </main>
     </>
   );
 }
-    
