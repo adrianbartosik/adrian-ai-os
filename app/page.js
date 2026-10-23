@@ -101,9 +101,9 @@ export default function Home() {
           width: 24px;
           height: 24px;
           pointer-events: none;
-          border-color: #12abdb;
+          border-color: #0070AD;
           border-style: solid;
-          filter: drop-shadow(0 0 5px #12abdb);
+          filter: drop-shadow(0 0 5px #0070AD);
         }
 
         .glass::before {
@@ -136,7 +136,7 @@ export default function Home() {
 
         .score-title {
           margin-top: 0;
-          color: #12abdb;
+          color: #0070AD;
         }
 
         .score-lines {
@@ -158,7 +158,7 @@ export default function Home() {
 
         .score-total {
           margin-bottom: 0;
-          color: #12abdb;
+          color: #0070AD;
         }
 
         .activity {
