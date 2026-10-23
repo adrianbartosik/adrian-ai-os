@@ -131,10 +131,36 @@ export default function Home() {
           border-width: 0 2px 2px 0;
         }
 
-        .decision-section {
-          margin-top: 44px;
-        }
+      .decision-section {
+  position: relative;
+  margin-top: 44px;
+}
+.watermark {
+  position: absolute;
 
+  left: 50%;
+  top: 55%;
+
+  transform: translate(-50%, -50%);
+
+  width: 800px;
+  max-width: 70vw;
+
+  opacity: 0.035;
+
+  pointer-events: none;
+
+  filter:
+    grayscale(100%)
+    brightness(3);
+
+  z-index: 0;
+}
+
+.watermark-section > *:not(.watermark) {
+  position: relative;
+  z-index: 1;
+}
         .support-grid {
           display: grid;
           grid-template-columns:
@@ -216,9 +242,15 @@ export default function Home() {
             <KpiGrid data={mockData} />
           </div>
 
-          <section className="decision-section">
-            <DecisionIntelligence data={mockData} />
-          </section>
+         <section className="decision-section watermark-section">
+  <img
+    src="/Capgemini_Engineering_Primary-logo_Capgemini-Blue.png"
+    alt="Capgemini Engineering"
+    className="watermark"
+  />
+
+  <DecisionIntelligence data={mockData} />
+</section>
 
           <section className="support-grid">
             <div className="glass">
