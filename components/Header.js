@@ -1,60 +1,120 @@
 export default function Header({ time }) {
   return (
-    <div
-      className="header"
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: "40px",
-        borderBottom: "1px solid #0070ad",
-        paddingBottom: "20px",
-      }}
-    >
-      <div>
-        <div
-          style={{
-            color: "#12abdb",
-            fontSize: "14px",
-            letterSpacing: "3px",
-            fontWeight: "600",
-          }}
-        >
-          CAPGEMINI ENGINEERING
+    <>
+      <style jsx>{`
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 40px;
+          padding-bottom: 20px;
+          border-bottom: 1px solid rgba(18, 171, 219, 0.3);
+        }
+
+        .brand {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+        }
+
+        .logo {
+          height: 50px;
+          width: auto;
+          object-fit: contain;
+        }
+
+        .title {
+          margin: 6px 0;
+          color: #12abdb;
+          font-size: 56px;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        .subtitle {
+          color: #a8c4d6;
+          margin: 0;
+        }
+
+        .clock {
+          font-size: 42px;
+          color: #12abdb;
+          font-weight: 700;
+          text-shadow: 0 0 15px rgba(18, 171, 219, 0.5);
+        }
+
+        .brand-tag {
+          color: #12abdb;
+          font-size: 11px;
+          letter-spacing: 2px;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+          .header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+          }
+
+          .clock {
+            font-size: 32px;
+          }
+
+          .title {
+            font-size: 42px;
+          }
+
+          .logo {
+            height: 40px;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .brand {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+          }
+
+          .title {
+            font-size: 34px;
+          }
+
+          .logo {
+            height: 32px;
+          }
+        }
+      `}</style>
+
+      <div className="header">
+        <div className="brand">
+          <img
+            src="/Capgemini_Engineering_Primary-logo_Capgemini-Blue.png"
+            alt="Capgemini Engineering"
+            className="logo"
+          />
+
+          <div>
+            <div className="brand-tag">
+              ENGINEERING COMMAND CENTER
+            </div>
+
+            <h1 className="title">
+              ADRIAN AI OS
+            </h1>
+
+            <p className="subtitle">
+              Chief of Staff Intelligence Platform
+            </p>
+          </div>
         </div>
 
-        <h1
-          className="title"
-          style={{
-            margin: "8px 0",
-            color: "#12abdb",
-            fontSize: "56px",
-            fontWeight: "700",
-          }}
-        >
-          ADRIAN AI OS
-        </h1>
-
-        <p
-          style={{
-            color: "#a8c4d6",
-            margin: 0,
-          }}
-        >
-          Engineering Leadership Command Center
-        </p>
+        <div className="clock">
+          {time}
+        </div>
       </div>
-
-      <div
-        className="clock"
-        style={{
-          fontSize: "42px",
-          color: "#12abdb",
-          fontWeight: "700",
-        }}
-      >
-        {time}
-      </div>
-    </div>
+    </>
   );
 }
