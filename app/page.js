@@ -144,7 +144,7 @@ export default function Home() {
           opacity: 0.05;
           pointer-events: none;
           transform: translate(-50%, -50%);
-          filter: grayscale(100%) brightness(3);
+          filter: saturate(0.8) brightness(2);
         }
 
         .watermark-section > *:not(.watermark) {
