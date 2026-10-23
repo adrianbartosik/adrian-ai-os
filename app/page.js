@@ -300,7 +300,21 @@ export default function Home() {
     />
   </div>
 </section>
+<section className="support-grid">
+  <div className="glass">
+    <CommanderPanel
+      actions={mockData.commanderActions}
+    />
+  </div>
 
+  <div className="glass">
+    <ScoreTrend
+      score={mockData.executiveScore}
+      trend={mockData.scoreTrend}
+      status={mockData.scoreStatus}
+    />
+  </div>
+</section>
           <div className="glass activity">
             <ActivityRadar />
           </div>
