@@ -303,4 +303,10 @@ export default function Home() {
 <div className="glass activity">
   <ActivityRadar />
 </div>
-          
+      
+        </div>
+      </main>
+    </>
+  );
+}
+    
