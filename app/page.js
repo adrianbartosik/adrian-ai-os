@@ -20,17 +20,29 @@ import ActivityRadar from "../components/ActivityRadar";
 
 export default function Home() {
   const [time, setTime] = useState("--:--");
+  const [dateInfo, setDateInfo] = useState("");
 
   useEffect(() => {
     const updateClock = () => {
-      setTime(
-        new Date().toLocaleTimeString("pl-PL", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        })
-      );
-    };
+  const now = new Date();
+
+  setTime(
+    now.toLocaleTimeString("pl-PL", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    })
+  );
+
+  setDateInfo(
+    now.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }) + " CET"
+  );
+};
 
     updateClock();
 
