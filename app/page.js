@@ -203,7 +203,10 @@ export default function Home() {
 
       <main className="page">
         <div className="container">
-          <Header time={time} />
+         <Header
+  time={time}
+  dateInfo={dateInfo}
+/>
 
           <TopStatusBar />
 
