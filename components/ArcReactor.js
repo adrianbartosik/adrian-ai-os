@@ -1,14 +1,47 @@
 "use client";
 
 export default function ArcReactor({ score = 87 }) {
-  const sectors = [
-    "RISK",
-    "PEOPLE",
-    "DELIVERY",
-    "QUALITY",
-    "FINANCE",
-    "COMPLIANCE",
-  ];
+  <div
+  className="sector"
+  style={{ top: "18%", left: "66%", transform: "rotate(60deg)" }}
+>
+  <span>COMPLIANCE</span>
+</div>
+
+<div
+  className="sector"
+  style={{ top: "78%", left: "70%", transform: "rotate(60deg)" }}
+>
+  <span>PEOPLE</span>
+</div>
+
+<div
+  className="sector"
+  style={{ top: "78%", left: "22%", transform: "rotate(-60deg)" }}
+>
+  <span>DELIVERY</span>
+</div>
+
+<div
+  className="sector"
+  style={{ top: "50%", left: "2%", transform: "translateY(-50%)" }}
+>
+  <span>QUALITY</span>
+</div>
+
+<div
+  className="sector"
+  style={{ top: "18%", left: "22%", transform: "rotate(-60deg)" }}
+>
+  <span>FINANCE</span>
+</div>
+
+<div
+  className="sector"
+  style={{ top: "50%", right: "0%", transform: "translateY(-50%)" }}
+>
+  <span>RISK</span>
+</div>
 
   return (
     <>
@@ -110,23 +143,19 @@ export default function ArcReactor({ score = 87 }) {
         }
 
         .sector {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 110px;
-          transform-origin: 0 0;
-          color: #6fdfff;
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-align: right;
-          text-shadow: 0 0 8px #12abdb;
-        }
+  position: absolute;
+  color: #6fdfff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #12abdb;
+  z-index: 10;
+}
 
         .sector span {
-          display: block;
-          transform: translateY(-10px);
-        }
+  display: block;
+  white-space: nowrap;
+}
 
         .core {
           position: absolute;
