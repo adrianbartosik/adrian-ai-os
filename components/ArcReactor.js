@@ -1,48 +1,6 @@
 "use client";
 
 export default function ArcReactor({ score = 87 }) {
-  <div
-  className="sector"
-  style={{ top: "18%", left: "66%", transform: "rotate(60deg)" }}
->
-  <span>COMPLIANCE</span>
-</div>
-
-<div
-  className="sector"
-  style={{ top: "78%", left: "70%", transform: "rotate(60deg)" }}
->
-  <span>PEOPLE</span>
-</div>
-
-<div
-  className="sector"
-  style={{ top: "78%", left: "22%", transform: "rotate(-60deg)" }}
->
-  <span>DELIVERY</span>
-</div>
-
-<div
-  className="sector"
-  style={{ top: "50%", left: "2%", transform: "translateY(-50%)" }}
->
-  <span>QUALITY</span>
-</div>
-
-<div
-  className="sector"
-  style={{ top: "18%", left: "22%", transform: "rotate(-60deg)" }}
->
-  <span>FINANCE</span>
-</div>
-
-<div
-  className="sector"
-  style={{ top: "50%", right: "0%", transform: "translateY(-50%)" }}
->
-  <span>RISK</span>
-</div>
-
   return (
     <>
       <style jsx>{`
@@ -79,7 +37,7 @@ export default function ArcReactor({ score = 87 }) {
           width: min(340px, 85vw);
           height: min(340px, 85vw);
           position: relative;
-          margin: 0 auto;
+          margin: 0 auto 90px auto;
         }
 
         .outer-ring {
@@ -143,19 +101,19 @@ export default function ArcReactor({ score = 87 }) {
         }
 
         .sector {
-  position: absolute;
-  color: #6fdfff;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-shadow: 0 0 8px #12abdb;
-  z-index: 10;
-}
+          position: absolute;
+          color: #6fdfff;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-shadow: 0 0 8px #12abdb;
+          z-index: 10;
+        }
 
         .sector span {
-  display: block;
-  white-space: nowrap;
-}
+          display: block;
+          white-space: nowrap;
+        }
 
         .core {
           position: absolute;
@@ -210,16 +168,16 @@ export default function ArcReactor({ score = 87 }) {
         }
 
         .footer {
-  position: absolute;
-  bottom: -60px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #12abdb;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
+          position: absolute;
+          bottom: -60px;
+          left: 0;
+          right: 0;
+          text-align: center;
+          color: #12abdb;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 2px;
+        }
 
         @media (max-width: 600px) {
           .reactor {
@@ -250,30 +208,69 @@ export default function ArcReactor({ score = 87 }) {
 
         <div className="progress-ring" />
 
-        {sectors.map((sector, index) => {
-  const angle = index * 60;
+        <div
+          className="sector"
+          style={{
+            top: "15%",
+            left: "22%",
+            transform: "rotate(-60deg)",
+          }}
+        >
+          <span>FINANCE</span>
+        </div>
 
-  return (
-    <div
-      key={sector}
-      className="sector"
-      style={{
-        transform: `rotate(${angle}deg) translateX(125px)`,
-      }}
-    >
-      <span
-        style={{
-          transform:
-            angle > 90 && angle < 270
-              ? `translateY(-10px) rotate(180deg)`
-              : `translateY(-10px)`,
-        }}
-      >
-        {sector}
-      </span>
-    </div>
-  );
-})}
+        <div
+          className="sector"
+          style={{
+            top: "8%",
+            left: "67%",
+            transform: "rotate(60deg)",
+          }}
+        >
+          <span>COMPLIANCE</span>
+        </div>
+
+        <div
+          className="sector"
+          style={{
+            top: "48%",
+            right: "-10px",
+          }}
+        >
+          <span>RISK</span>
+        </div>
+
+        <div
+          className="sector"
+          style={{
+            top: "82%",
+            left: "72%",
+            transform: "rotate(60deg)",
+          }}
+        >
+          <span>PEOPLE</span>
+        </div>
+
+        <div
+          className="sector"
+          style={{
+            top: "80%",
+            left: "18%",
+            transform: "rotate(-60deg)",
+          }}
+        >
+          <span>DELIVERY</span>
+        </div>
+
+        <div
+          className="sector"
+          style={{
+            top: "48%",
+            left: "-5px",
+          }}
+        >
+          <span>QUALITY</span>
+        </div>
 
         <div className="core">
           <div className="score">{score}%</div>
