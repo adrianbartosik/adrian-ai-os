@@ -221,17 +221,30 @@ export default function ArcReactor({ score = 87 }) {
 
         <div className="progress-ring" />
 
-        {sectors.map((sector, index) => (
-          <div
-            key={sector}
-            className="sector"
-            style={{
-              transform: `rotate(${index * 60}deg) translateX(125px)`,
-            }}
-          >
-            <span>{sector}</span>
-          </div>
-        ))}
+        {sectors.map((sector, index) => {
+  const angle = index * 60;
+
+  return (
+    <div
+      key={sector}
+      className="sector"
+      style={{
+        transform: `rotate(${angle}deg) translateX(125px)`,
+      }}
+    >
+      <span
+        style={{
+          transform:
+            angle > 90 && angle < 270
+              ? `translateY(-10px) rotate(180deg)`
+              : `translateY(-10px)`,
+        }}
+      >
+        {sector}
+      </span>
+    </div>
+  );
+})}
 
         <div className="core">
           <div className="score">{score}%</div>
