@@ -181,16 +181,16 @@ export default function ArcReactor({ score = 87 }) {
         }
 
         .footer {
-          position: absolute;
-          bottom: -30px;
-          left: 0;
-          right: 0;
-          text-align: center;
-          color: #12abdb;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 2px;
-        }
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #12abdb;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
 
         @media (max-width: 600px) {
           .reactor {
