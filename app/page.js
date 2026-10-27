@@ -237,10 +237,14 @@ export default function Home() {
           </div>
 
           <section className="decision-section watermark-section">
-            /Capgemini_Engineering_Primary-logo_Capgemini-Blue.png
+  <img
+    src="/Capgemini_Engineering_Primary-logo_Capgemini-Blue.png"
+    alt="Capgemini Engineering"
+    className="watermark"
+  />
 
-            <DecisionIntelligence data={mockData} />
-          </section>
+  <DecisionIntelligence data={mockData} />
+</section>
 
           <section className="support-grid">
             <div className="glass">
