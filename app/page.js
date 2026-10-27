@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { mockData } from "../data/mockData";
-
+import JarvisGreeting from "../components/JarvisGreeting";
 import Header from "../components/Header";
 import TopStatusBar from "../components/TopStatusBar";
 import MorningBrief from "../components/MorningBrief";
