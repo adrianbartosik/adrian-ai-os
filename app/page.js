@@ -218,26 +218,29 @@ export default function Home() {
 
           <MorningBrief data={mockData} />
 
-          <div style={{ marginTop: "24px" }}>
-            <KpiGrid data={mockData} />
-          </div>
+<div style={{ marginTop: "24px" }}>
+  <KpiGrid data={mockData} />
+</div>
 
-          <section className="decision-section watermark-section">
-            
-            /Capgemini_Engineering_Primary-logo_Capgemini-Blue.png
+<section className="decision-section watermark-section">
+  <img
+    src="/Capgemini_Engineering_Primary-logo_Capgemini-Blue.png"
+    alt="Capgemini Engineering"
+    className="watermark"
+  />
 
-            <DecisionIntelligence data={mockData} />
-          </section>
+  <DecisionIntelligence data={mockData} />
+</section>
 
-          <section className="support-grid">
-            <div className="glass">
-              <SystemStatus />
-            </div>
+<section className="support-grid">
+  <div className="glass">
+    <SystemStatus />
+  </div>
 
-            <div className="glass">
-              <AIBrief items={mockData.aiBrief} />
-            </div>
-          </section>
+  <div className="glass">
+    <AIBrief items={mockData.aiBrief} />
+  </div>
+</section>
 
           <section className="support-grid">
             <div className="glass">
