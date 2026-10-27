@@ -19,7 +19,7 @@ import ScoreTrend from "../components/ScoreTrend";
 import ActivityRadar from "../components/ActivityRadar";
 
 import JarvisGreeting from "../components/JarvisGreeting";
-import ImportCenter from "../components/ImportCenter";
+
 
 export default function Home() {
   const [time, setTime] = useState("--:--:--");
