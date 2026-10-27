@@ -17,9 +17,7 @@ import Priorities from "../components/Priorities";
 import CommanderPanel from "../components/CommanderPanel";
 import ScoreTrend from "../components/ScoreTrend";
 import ActivityRadar from "../components/ActivityRadar";
-
 import JarvisGreeting from "../components/JarvisGreeting";
-
 
 export default function Home() {
   const [time, setTime] = useState("--:--:--");
@@ -65,6 +63,7 @@ export default function Home() {
           overflow-x: hidden;
           color: #ffffff;
           font-family: "Segoe UI", Arial, sans-serif;
+
           background:
             linear-gradient(
               rgba(0, 112, 173, 0.04) 1px,
@@ -81,6 +80,7 @@ export default function Home() {
               #041018 38%,
               #000000 100%
             );
+
           background-size:
             40px 40px,
             40px 40px,
@@ -96,11 +96,15 @@ export default function Home() {
         .glass {
           position: relative;
           overflow: hidden;
+
           border: 1px solid rgba(0, 112, 173, 0.3);
           border-radius: 18px;
+
           background: rgba(255, 255, 255, 0.03);
+
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
+
           box-shadow:
             inset 0 0 12px rgba(0, 112, 173, 0.08),
             0 0 20px rgba(0, 112, 173, 0.1);
@@ -111,28 +115,30 @@ export default function Home() {
           content: "";
           position: absolute;
           z-index: 2;
+
           width: 24px;
           height: 24px;
+
           pointer-events: none;
+
           border-color: #0070ad;
           border-style: solid;
+
           filter: drop-shadow(0 0 5px #0070ad);
         }
 
         .glass::before {
           top: 0;
           left: 0;
+
           border-width: 2px 0 0 2px;
         }
 
         .glass::after {
           right: 0;
           bottom: 0;
-          border-width: 0 2px 2px 0;
-        }
 
-        .import-section {
-          margin-top: 24px;
+          border-width: 0 2px 2px 0;
         }
 
         .decision-section {
@@ -142,14 +148,21 @@ export default function Home() {
 
         .watermark {
           position: absolute;
+
           top: 55%;
           left: 50%;
+
           z-index: 0;
+
           width: 800px;
           max-width: 70vw;
+
           opacity: 0.05;
+
           pointer-events: none;
+
           transform: translate(-50%, -50%);
+
           filter: saturate(0.8) brightness(2);
         }
 
@@ -160,8 +173,11 @@ export default function Home() {
 
         .support-grid {
           display: grid;
+
           grid-template-columns: repeat(2, minmax(0, 1fr));
+
           gap: 24px;
+
           margin-top: 24px;
         }
 
@@ -204,7 +220,6 @@ export default function Home() {
       `}</style>
 
       <main className="page">
-        {/* JARVIS-style voice greeting */}
         <JarvisGreeting />
 
         <div className="container">
@@ -215,15 +230,6 @@ export default function Home() {
 
           <TopStatusBar />
 
-          {/* AOS DATA IMPORT */}
-          <section className="import-section">
-            <ImportCenter
-              onImport={(payload) => {
-                console.log("AOS import completed:", payload);
-              }}
-            />
-          </section>
-
           <MorningBrief data={mockData} />
 
           <div style={{ marginTop: "24px" }}>
@@ -231,11 +237,7 @@ export default function Home() {
           </div>
 
           <section className="decision-section watermark-section">
-            <img
-              src="/Capgemini_Engineering_Primary-logo_Capgemini-Blue.png"
-              alt="Capgemini Engineering"
-              className="watermark"
-            />
+            /Capgemini_Engineering_Primary-logo_Capgemini-Blue.png
 
             <DecisionIntelligence data={mockData} />
           </section>
@@ -256,24 +258,34 @@ export default function Home() {
             </div>
 
             <div className="glass">
-              <NextMeeting meeting={mockData.meetings} />
+              <NextMeeting
+                meeting={mockData.meetings}
+              />
             </div>
           </section>
 
           <section className="support-grid">
             <div className="glass">
-              <DecisionQueue decisions={mockData.decisions} />
+              <DecisionQueue
+                decisions={mockData.decisions}
+              />
             </div>
 
             <div className="glass">
-              <Priorities priorities={mockData.priorities} />
+              <Priorities
+                priorities={mockData.priorities}
+              />
             </div>
           </section>
 
           <section className="support-grid">
             <div className="glass">
               <CommanderPanel
-     >
+                actions={mockData.commanderActions}
+              />
+            </div>
+
+            <div className="glass">
               <ScoreTrend
                 score={mockData.executiveScore}
                 trend={mockData.scoreTrend}
