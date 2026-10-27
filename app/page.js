@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { mockData } from "../data/mockData";
-import JarvisGreeting from "../components/JarvisGreeting";
+
 import Header from "../components/Header";
 import TopStatusBar from "../components/TopStatusBar";
 import MorningBrief from "../components/MorningBrief";
@@ -18,6 +17,9 @@ import Priorities from "../components/Priorities";
 import CommanderPanel from "../components/CommanderPanel";
 import ScoreTrend from "../components/ScoreTrend";
 import ActivityRadar from "../components/ActivityRadar";
+
+import JarvisGreeting from "../components/JarvisGreeting";
+import ImportCenter from "../components/ImportCenter";
 
 export default function Home() {
   const [time, setTime] = useState("--:--:--");
@@ -129,6 +131,10 @@ export default function Home() {
           border-width: 0 2px 2px 0;
         }
 
+        .import-section {
+          margin-top: 24px;
+        }
+
         .decision-section {
           position: relative;
           margin-top: 44px;
@@ -198,6 +204,9 @@ export default function Home() {
       `}</style>
 
       <main className="page">
+        {/* JARVIS-style voice greeting */}
+        <JarvisGreeting />
+
         <div className="container">
           <Header
             time={time}
@@ -206,21 +215,30 @@ export default function Home() {
 
           <TopStatusBar />
 
+          {/* AOS DATA IMPORT */}
+          <section className="import-section">
+            <ImportCenter
+              onImport={(payload) => {
+                console.log("AOS import completed:", payload);
+              }}
+            />
+          </section>
+
           <MorningBrief data={mockData} />
 
           <div style={{ marginTop: "24px" }}>
             <KpiGrid data={mockData} />
           </div>
 
-         <section className="decision-section watermark-section">
-  <img
-    src="/Capgemini_Engineering_Primary-logo_Capgemini-Blue.png"
-    alt="Capgemini Engineering"
-    className="watermark"
-  />
+          <section className="decision-section watermark-section">
+            <img
+              src="/Capgemini_Engineering_Primary-logo_Capgemini-Blue.png"
+              alt="Capgemini Engineering"
+              className="watermark"
+            />
 
-  <DecisionIntelligence data={mockData} />
-</section>
+            <DecisionIntelligence data={mockData} />
+          </section>
 
           <section className="support-grid">
             <div className="glass">
@@ -238,34 +256,24 @@ export default function Home() {
             </div>
 
             <div className="glass">
-              <NextMeeting
-                meeting={mockData.meetings}
-              />
+              <NextMeeting meeting={mockData.meetings} />
             </div>
           </section>
 
           <section className="support-grid">
             <div className="glass">
-              <DecisionQueue
-                decisions={mockData.decisions}
-              />
+              <DecisionQueue decisions={mockData.decisions} />
             </div>
 
             <div className="glass">
-              <Priorities
-                priorities={mockData.priorities}
-              />
+              <Priorities priorities={mockData.priorities} />
             </div>
           </section>
 
           <section className="support-grid">
             <div className="glass">
               <CommanderPanel
-                actions={mockData.commanderActions}
-              />
-            </div>
-
-            <div className="glass">
+     >
               <ScoreTrend
                 score={mockData.executiveScore}
                 trend={mockData.scoreTrend}
