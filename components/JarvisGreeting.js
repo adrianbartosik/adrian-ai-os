@@ -4,190 +4,134 @@ import { useEffect } from "react";
 
 export default function JarvisGreeting() {
   useEffect(() => {
-    if (!("speechSynthesis" in window)) {
-      console.log("AOS Voice: speech synthesis unavailable");
+    if (
+      typeof window === "undefined" ||
+      !("speechSynthesis" in window)
+    ) {
       return;
     }
 
     const synth = window.speechSynthesis;
 
-    let hasSpoken = false;
-
     const getGreeting = () => {
       const hour = new Date().getHours();
 
       if (hour < 12) {
-        return "Good morning, Adrian.";
+        return "Good morning";
       }
 
       if (hour < 18) {
-        return "Good afternoon, Adrian.";
+        return "Good afternoon";
       }
 
-      return "Good evening, Adrian.";
+      return "Good evening";
     };
 
-    const selectVoice = () => {
+    const getBestVoice = () => {
       const voices = synth.getVoices();
 
-      if (!voices.length) {
-        return null;
-      }
-
-      const preferredNames = [
-        "Microsoft Ryan Online",
-        "Microsoft Guy Online",
-        "Microsoft Christopher Online",
-        "Microsoft Eric Online",
-        "Microsoft George",
-        "Microsoft David",
-        "Daniel",
-      ];
-
-      for (const preferredName of preferredNames) {
-        const voice = voices.find((item) =>
-          item.name
-            .toLowerCase()
-            .includes(preferredName.toLowerCase())
-        );
-
-        if (voice) {
-          return voice;
-        }
-      }
-
-      return (
+      const preferredVoice =
         voices.find(
           (voice) =>
             voice.lang === "en-GB" &&
-            voice.localService
+            voice.name.toLowerCase().includes("microsoft")
         ) ||
         voices.find(
           (voice) =>
             voice.lang === "en-US" &&
-            voice.localService
+            voice.name.toLowerCase().includes("microsoft")
         ) ||
-        voices.find((voice) =>
-          voice.lang.startsWith("en-GB")
+        voices.find(
+          (voice) =>
+            voice.lang === "en-GB"
         ) ||
-        voices.find((voice) =>
-          voice.lang.startsWith("en-US")
+        voices.find(
+          (voice) =>
+            voice.lang === "en-US"
         ) ||
-        voices.find((voice) =>
-          voice.lang.startsWith("en")
-        ) ||
-        null
-      );
+        voices.find(
+          (voice) =>
+            voice.lang.startsWith("en")
+        );
+
+      return preferredVoice || null;
     };
 
     const speak = () => {
-      if (hasSpoken) {
+      try {
+        synth.cancel();
+
+        const text =
+          `${getGreeting()}, Adrian. ` +
+          "All systems are operational. " +
+          "You have four meetings, four pending decisions, " +
+          "and four active risks. " +
+          "Shall we begin?";
+
+        const utterance =
+          new SpeechSynthesisUtterance(text);
+
+        const voice = getBestVoice();
+
+        if (voice) {
+          utterance.voice = voice;
+          utterance.lang = voice.lang;
+        } else {
+          utterance.lang = "en-GB";
+        }
+
+        /*
+         * Natural assistant voice.
+         * Nie obniżamy pitch agresywnie.
+         */
+        utterance.rate = 0.9;
+        utterance.pitch = 0.95;
+        utterance.volume = 0.9;
+
+        synth.speak(utterance);
+      } catch (error) {
+        console.error("AOS Voice error:", error);
+      }
+    };
+
+    let hasStarted = false;
+
+    const startVoice = () => {
+      if (hasStarted) {
         return;
       }
 
-      const message = new SpeechSynthesisUtterance(
-        getGreeting()
-      );
+      hasStarted = true;
 
-      const voice = selectVoice();
-
-      if (voice) {
-        message.voice = voice;
-        message.lang = voice.lang;
-      } else {
-        message.lang = "en-GB";
-      }
-
-      message.rate = 0.82;
-      message.pitch = 0.72;
-      message.volume = 1;
-
-      message.onstart = () => {
-        hasSpoken = true;
-
-        console.log(
-          "AOS Voice:",
-          message.text,
-          voice?.name || "default voice"
-        );
-      };
-
-      message.onerror = (event) => {
-        console.log(
-          "AOS Voice waiting for interaction:",
-          event.error
-        );
-      };
-
-      synth.cancel();
-      synth.resume();
-      synth.speak(message);
-    };
-
-    const speakAfterInteraction = () => {
-      if (!hasSpoken) {
-        speak();
-      }
-
-      document.removeEventListener(
-        "click",
-        speakAfterInteraction
-      );
-
-      document.removeEventListener(
-        "keydown",
-        speakAfterInteraction
-      );
-
-      document.removeEventListener(
-        "touchstart",
-        speakAfterInteraction
-      );
-    };
-
-    const timer = setTimeout(() => {
       speak();
-    }, 900);
 
-    synth.addEventListener("voiceschanged", selectVoice);
+      window.removeEventListener("click", startVoice);
+      window.removeEventListener("keydown", startVoice);
+      window.removeEventListener("touchstart", startVoice);
+    };
 
-    document.addEventListener(
-      "click",
-      speakAfterInteraction
-    );
+    /*
+     * Próbujemy automatycznie.
+     */
+    const timer = window.setTimeout(() => {
+      startVoice();
+    }, 1200);
 
-    document.addEventListener(
-      "keydown",
-      speakAfterInteraction
-    );
-
-    document.addEventListener(
-      "touchstart",
-      speakAfterInteraction
-    );
+    /*
+     * Fallback dla przeglądarek wymagających interakcji.
+     */
+    window.addEventListener("click", startVoice);
+    window.addEventListener("keydown", startVoice);
+    window.addEventListener("touchstart", startVoice);
 
     return () => {
-      clearTimeout(timer);
+      window.clearTimeout(timer);
 
-      synth.removeEventListener(
-        "voiceschanged",
-        selectVoice
-      );
+      window.removeEventListener("click", startVoice);
+      window.removeEventListener("keydown", startVoice);
+      window.removeEventListener("touchstart", startVoice);
 
-      document.removeEventListener(
-        "click",
-        speakAfterInteraction
-      );
-
-      document.removeEventListener(
-        "keydown",
-        speakAfterInteraction
-      );
-
-      document.removeEventListener(
-        "touchstart",
-        speakAfterInteraction
-      );
+      synth.cancel();
     };
   }, []);
 
